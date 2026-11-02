@@ -1,0 +1,53 @@
+:root {
+  /* Cores institucionais */
+  --ifg-green: #2f9e41;
+  --ifg-red: #cd191e;
+
+  /* Cores da cartilha */
+  --primary: #216b35;
+  --primary-hover: #18532a;
+
+  --background: #f5f5f0;
+  --surface: #fafaf7;
+  --surface-highlight: #e8f3e9;
+
+  --text-primary: #243b2c;
+  --text-secondary: #526657;
+  --border: #dee8de;
+
+  /* Configurações globais */
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text-primary);
+  background-color: var(--background);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font: inherit;
+}
+
+.container {
+  width: min(1100px, 90%);
+  margin: 0 auto;
+}
