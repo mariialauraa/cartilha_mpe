@@ -55,3 +55,15 @@
     gap: 16px;
   }
 }
+
+.nav a.active {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.nav a:focus-visible,
+.logo:focus-visible {
+  outline: 2px solid var(--ifg-green);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
