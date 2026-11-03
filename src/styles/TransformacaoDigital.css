@@ -23,21 +23,13 @@
 
 .transformacao-conceito {
   background-color: var(--background);
-  padding: 65px 0 50px;
+  padding: 65px 0 15px;
 }
 
 .transformacao-conceito h2 {
   color: var(--primary);
   font-size: 28px;
   margin: 0 0 20px;
-}
-
-.transformacao-conceito > .container > p {
-  color: var(--text-primary);
-  font-size: 17px;
-  line-height: 1.8;
-  max-width: 780px;
-  margin: 0;
 }
 
 /* Exemplo prático */
@@ -80,7 +72,7 @@
 
 .transformacao-beneficios {
   background-color: var(--background);
-  padding: 20px 0 80px;
+  padding: 15px 0;
 }
 
 .transformacao-beneficios h2 {
@@ -129,6 +121,121 @@
   margin: 0;
 }
 
+/* Desafios da Transformação Digital */
+
+.transformacao-desafios {
+  background-color: var(--background);
+  padding: 15px 0 80px;
+}
+
+.transformacao-desafios h2 {
+  color: var(--primary);
+  font-size: 28px;
+  margin: 0 0 15px;
+}
+
+.desafios-descricao {
+  color: var(--text-secondary);
+  font-size: 16px;
+  line-height: 1.8;
+  margin: 0 0 30px;
+  max-width: 780px;
+}
+
+.desafios-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 950px;
+}
+
+.desafio-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+}
+
+.desafio-card svg {
+  color: var(--secondary);
+  margin-bottom: 15px;
+}
+
+.desafio-card h3 {
+  color: var(--primary);
+  font-size: 18px;
+  margin: 0 0 12px;
+}
+
+.desafio-card p {
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* Seções expansíveis */
+
+.secao-expansivel {
+  max-width: 950px;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.secao-expansivel summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 26px;
+  background-color: var(--background-light-blue);
+  cursor: pointer;
+  list-style: none;
+}
+
+.secao-expansivel summary::-webkit-details-marker {
+  display: none;
+}
+
+.secao-expansivel summary h2 {
+  margin: 0;
+  font-size: 23px;
+  color: var(--primary);
+}
+
+.secao-expansivel summary::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid var(--secondary);
+  border-bottom: 2px solid var(--secondary);
+  transform: rotate(45deg);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+
+.secao-expansivel[open] summary::after {
+  transform: rotate(-135deg);
+}
+
+.secao-expansivel summary:focus-visible {
+  outline: 2px solid var(--secondary);
+  outline-offset: -3px;
+}
+
+.secao-conteudo {
+  padding: 25px 26px 30px;
+}
+
+.transformacao-conceito .secao-conteudo > p {
+  color: var(--text-primary);
+  font-size: 17px;
+  line-height: 1.8;
+  margin: 0;
+}
+
 /* Responsividade */
 
 @media (max-width: 768px) {
@@ -137,27 +244,46 @@
   }
 
   .transformacao-conceito {
-    padding: 45px 0 40px;
+    padding: 45px 0 12px;
+  }
+
+  .transformacao-beneficios {
+    padding: 12px 0;
+  }
+
+  .transformacao-desafios {
+    padding: 12px 0 60px;
   }
 
   .transformacao-conceito h2,
-  .transformacao-beneficios h2 {
+  .transformacao-beneficios h2,
+  .transformacao-desafios h2 {
     font-size: 24px;
+  }
+
+  .secao-expansivel summary {
+    padding: 18px 20px;
+  }
+
+  .secao-expansivel summary h2 {
+    font-size: 20px;
+  }
+
+  .secao-conteudo {
+    padding: 20px;
   }
 
   .exemplo-pratico {
     padding: 20px;
   }
 
-  .transformacao-beneficios {
-    padding: 20px 0 60px;
-  }
-
-  .beneficios-grid {
+  .beneficios-grid,
+  .desafios-grid {
     grid-template-columns: 1fr;
   }
 
-  .beneficio-card {
+  .beneficio-card,
+  .desafio-card {
     padding: 24px;
   }
 }
