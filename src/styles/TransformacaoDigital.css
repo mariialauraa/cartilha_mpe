@@ -333,6 +333,13 @@
   border-radius: 12px;
 }
 
+/* Altura dos cartões de benefícios */
+
+.beneficio-card.desafio-flip,
+.beneficio-card .desafio-flip-inner {
+  min-height: 260px;
+}
+
 /* Responsividade */
 
 @media (max-width: 768px) {
@@ -384,9 +391,18 @@
     padding: 24px;
   }
 
+  /* Cartões com efeito de virar */
+
   .desafio-card.desafio-flip,
   .desafio-flip-inner {
     min-height: 340px;
+  }
+
+  /* Altura específica dos Benefícios */
+
+  .beneficio-card.desafio-flip,
+  .beneficio-card .desafio-flip-inner {
+    min-height: 310px;
   }
 
   .desafio-face {
@@ -394,9 +410,12 @@
   }
 }
 
+/* Telas menores */
+
 @media (max-width: 400px) {
   .desafio-card.desafio-flip,
-  .desafio-flip-inner {
+  .desafio-flip-inner,
+  .beneficio-card .desafio-flip-inner {
     min-height: 400px;
   }
 
