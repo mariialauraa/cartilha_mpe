@@ -1,6 +1,6 @@
 .footer {
   background-color: var(--surface);
-  border-top: 3px solid var(--ifg-green);
+  border-top: 3px solid var(--secondary);
   margin-top: auto;
 }
 

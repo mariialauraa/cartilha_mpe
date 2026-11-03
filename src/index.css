@@ -1,19 +1,22 @@
 :root {
-  /* Cores institucionais */
-  --ifg-green: #2f9e41;
-  --ifg-red: #cd191e;
+  /* Cores principais da cartilha */
+  --primary: #153b5b;
+  --primary-hover: #0f2d46;
 
-  /* Cores da cartilha */
-  --primary: #216b35;
-  --primary-hover: #18532a;
+  --secondary: #159e98;
+  --secondary-hover: #117b76;
 
-  --background: #f5f5f0;
-  --surface: #fafaf7;
-  --surface-highlight: #e8f3e9;
+  --accent: #f4b860;
 
-  --text-primary: #243b2c;
-  --text-secondary: #526657;
-  --border: #dee8de;
+  /* Fundos e superfícies */
+  --background: #f7f9fc;
+  --surface: #ffffff;
+  --surface-highlight: #e2f4f2;
+
+  /* Textos e bordas */
+  --text-primary: #253449;
+  --text-secondary: #526174;
+  --border: #dde6ed;
 
   /* Configurações globais */
   font-family: Arial, Helvetica, sans-serif;

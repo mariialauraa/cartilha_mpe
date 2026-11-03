@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import "../styles/Home.css";
 
 function Home() {
@@ -47,32 +48,44 @@ function Home() {
           </p>
 
           <div className="topics-grid">
-            <article className="topic-card">
+            <Link to="/transformacao-digital" className="topic-card">
               <span className="topic-icon">◈</span>
+
               <h3>Transformação Digital</h3>
+
               <p>
                 Entenda o conceito, os benefícios e os principais desafios para
                 pequenos negócios.
               </p>
-            </article>
 
-            <article className="topic-card">
+              <span className="topic-link">Saiba mais →</span>
+            </Link>
+
+            <Link to="/ferramentas-digitais" className="topic-card">
               <span className="topic-icon">▦</span>
+
               <h3>Ferramentas Digitais</h3>
+
               <p>
                 Conheça soluções para presença digital, comércio eletrônico e
                 gestão empresarial.
               </p>
-            </article>
 
-            <article className="topic-card">
+              <span className="topic-link">Explorar ferramentas →</span>
+            </Link>
+
+            <Link to="/autoavaliacao" className="topic-card">
               <span className="topic-icon">✓</span>
+
               <h3>Autoavaliação Digital</h3>
+
               <p>
                 Reflita sobre o uso de tecnologias na sua empresa e identifique
                 oportunidades.
               </p>
-            </article>
+
+              <span className="topic-link">Começar avaliação →</span>
+            </Link>
           </div>
         </div>
       </section>
