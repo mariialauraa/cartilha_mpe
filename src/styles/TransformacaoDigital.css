@@ -1,0 +1,89 @@
+.transformacao-hero {
+  background-color: var(--surface-highlight);
+  padding: 70px 0;
+}
+
+.transformacao-hero h1 {
+  color: var(--primary);
+  font-size: clamp(30px, 4vw, 42px);
+  margin: 0 0 18px;
+}
+
+.transformacao-hero p {
+  color: var(--text-secondary);
+  font-size: 16px;
+  line-height: 1.8;
+  max-width: 650px;
+  margin: 0;
+}
+
+/* Conceito de Transformação Digital */
+
+.transformacao-conceito {
+  background-color: var(--background);
+  padding: 65px 0 80px;
+}
+
+.transformacao-conceito h2 {
+  color: var(--primary);
+  font-size: 28px;
+  margin: 0 0 20px;
+}
+
+.transformacao-conceito > .container > p {
+  color: var(--text-primary);
+  font-size: 17px;
+  line-height: 1.8;
+  max-width: 780px;
+  margin: 0;
+}
+
+/* Exemplo prático */
+
+.exemplo-pratico {
+  background-color: var(--surface-highlight);
+  border-left: 4px solid var(--accent);
+  border-radius: 10px;
+  padding: 25px 30px;
+  margin-top: 35px;
+  max-width: 780px;
+}
+
+.exemplo-titulo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.exemplo-icone {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.exemplo-titulo h3 {
+  color: var(--primary);
+  font-size: 18px;
+  margin: 0;
+}
+
+.exemplo-pratico p {
+  color: var(--text-primary);
+  font-size: 16px;
+  line-height: 1.8;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .transformacao-conceito {
+    padding: 45px 0 60px;
+  }
+
+  .transformacao-conceito h2 {
+    font-size: 24px;
+  }
+
+  .exemplo-pratico {
+    padding: 20px;
+  }
+}

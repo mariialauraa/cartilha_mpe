@@ -70,3 +70,14 @@ button {
   color: var(--text-secondary);
   line-height: 1.8;
 }
+
+/* Estrutura principal da aplicação */
+.app-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-content {
+  flex: 1;
+}

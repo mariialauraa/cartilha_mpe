@@ -10,21 +10,26 @@ import Autoavaliacao from "./pages/Autoavaliacao";
 
 function App() {
   return (
-    <>
+    <div className="app-layout">
       <Header />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route
-          path="/transformacao-digital"
-          element={<TransformacaoDigital />}
-        />
-        <Route path="/ferramentas-digitais" element={<FerramentasDigitais />} />
-        <Route path="/autoavaliacao" element={<Autoavaliacao />} />
-      </Routes>
+      <div className="app-content">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/transformacao-digital"
+            element={<TransformacaoDigital />}
+          />
+          <Route
+            path="/ferramentas-digitais"
+            element={<FerramentasDigitais />}
+          />
+          <Route path="/autoavaliacao" element={<Autoavaliacao />} />
+        </Routes>
+      </div>
 
       <Footer />
-    </>
+    </div>
   );
 }
 
