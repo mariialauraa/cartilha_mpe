@@ -1,7 +1,7 @@
 /* Apresentação */
 
 .hero {
-  background-color: #eef5f7;
+  background-color: var(--background-light-blue);
   padding: 85px 0;
 }
 
