@@ -144,10 +144,12 @@
 
 .desafios-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
   max-width: 950px;
 }
+
+/* Cartões dos desafios */
 
 .desafio-card {
   background-color: var(--surface);
@@ -184,7 +186,7 @@
   overflow: hidden;
 }
 
-.secao-expansivel summary {
+.secao-expansivel > summary {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -195,17 +197,17 @@
   list-style: none;
 }
 
-.secao-expansivel summary::-webkit-details-marker {
+.secao-expansivel > summary::-webkit-details-marker {
   display: none;
 }
 
-.secao-expansivel summary h2 {
+.secao-expansivel > summary h2 {
   margin: 0;
   font-size: 23px;
   color: var(--primary);
 }
 
-.secao-expansivel summary::after {
+.secao-expansivel > summary::after {
   content: "";
   width: 10px;
   height: 10px;
@@ -216,11 +218,11 @@
   flex-shrink: 0;
 }
 
-.secao-expansivel[open] summary::after {
+.secao-expansivel[open] > summary::after {
   transform: rotate(-135deg);
 }
 
-.secao-expansivel summary:focus-visible {
+.secao-expansivel > summary:focus-visible {
   outline: 2px solid var(--secondary);
   outline-offset: -3px;
 }
@@ -234,6 +236,101 @@
   font-size: 17px;
   line-height: 1.8;
   margin: 0;
+}
+
+/* Cartão com efeito de virar */
+
+.desafio-card.desafio-flip {
+  display: block;
+  width: 100%;
+  min-height: 310px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  perspective: 1000px;
+  color: inherit;
+  font: inherit;
+}
+
+/* Estrutura responsável pela rotação */
+
+.desafio-flip-inner {
+  display: block;
+  position: relative;
+  width: 100%;
+  min-height: 310px;
+  transform-style: preserve-3d;
+  transition: transform 0.65s ease;
+}
+
+.desafio-flip.virado .desafio-flip-inner {
+  transform: rotateY(180deg);
+}
+
+/* Frente e verso */
+
+.desafio-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 28px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background-color: var(--surface);
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.desafio-frente {
+  transform: rotateY(0deg);
+}
+
+.desafio-verso {
+  background-color: var(--background-light-blue);
+  border-left: 4px solid var(--accent);
+  transform: rotateY(180deg);
+}
+
+.desafio-verso svg {
+  color: var(--accent);
+}
+
+/* Textos do cartão */
+
+.desafio-titulo {
+  display: block;
+  color: var(--primary);
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.desafio-texto {
+  display: block;
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.desafio-acao {
+  display: block;
+  margin-top: auto;
+  padding-top: 16px;
+  color: var(--secondary);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Acessibilidade */
+
+.desafio-flip:focus-visible {
+  outline: 2px solid var(--secondary);
+  outline-offset: 4px;
+  border-radius: 12px;
 }
 
 /* Responsividade */
@@ -261,11 +358,11 @@
     font-size: 24px;
   }
 
-  .secao-expansivel summary {
+  .secao-expansivel > summary {
     padding: 18px 20px;
   }
 
-  .secao-expansivel summary h2 {
+  .secao-expansivel > summary h2 {
     font-size: 20px;
   }
 
@@ -285,5 +382,33 @@
   .beneficio-card,
   .desafio-card {
     padding: 24px;
+  }
+
+  .desafio-card.desafio-flip,
+  .desafio-flip-inner {
+    min-height: 340px;
+  }
+
+  .desafio-face {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 400px) {
+  .desafio-card.desafio-flip,
+  .desafio-flip-inner {
+    min-height: 400px;
+  }
+
+  .desafio-face {
+    padding: 20px;
+  }
+}
+
+/* Redução de animações */
+
+@media (prefers-reduced-motion: reduce) {
+  .desafio-flip-inner {
+    transition: none;
   }
 }

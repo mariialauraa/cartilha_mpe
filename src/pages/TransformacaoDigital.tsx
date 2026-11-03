@@ -9,9 +9,15 @@ import {
   ClipboardList,
 } from "lucide-react";
 
+import { useState } from "react";
 import "../styles/TransformacaoDigital.css";
 
 function TransformacaoDigital() {
+  const [cartaoVirado, setCartaoVirado] = useState<string | null>(null);
+
+  const virarCartao = (cartao: string) => {
+    setCartaoVirado((atual) => (atual === cartao ? null : cartao));
+  };
   return (
     <main>
       {/* Apresentação */}
@@ -133,47 +139,223 @@ function TransformacaoDigital() {
               </p>
 
               <div className="desafios-grid">
-                <article className="desafio-card">
-                  <Wallet size={28} />
+                {/* Recursos financeiros limitados */}
+                <button
+                  type="button"
+                  className={`desafio-card desafio-flip ${
+                    cartaoVirado === "financeiro" ? "virado" : ""
+                  }`}
+                  onClick={() => virarCartao("financeiro")}
+                  aria-pressed={cartaoVirado === "financeiro"}
+                  aria-label={
+                    cartaoVirado === "financeiro"
+                      ? "Voltar ao desafio: Recursos financeiros limitados"
+                      : "Ver dica para Recursos financeiros limitados"
+                  }
+                >
+                  <span className="desafio-flip-inner">
+                    <span
+                      className="desafio-face desafio-frente"
+                      aria-hidden={cartaoVirado === "financeiro"}
+                    >
+                      <Wallet size={28} />
 
-                  <h3>Recursos financeiros limitados</h3>
+                      <span className="desafio-titulo">
+                        Recursos financeiros limitados
+                      </span>
 
-                  <p>
-                    Dificuldade para investir em tecnologias, equipamentos e
-                    capacitação.
-                  </p>
-                </article>
+                      <span className="desafio-texto">
+                        Dificuldade para investir em tecnologias, equipamentos e
+                        capacitação.
+                      </span>
 
-                <article className="desafio-card">
-                  <BookOpen size={28} />
+                      <span className="desafio-acao">
+                        Virar para ver a dica ↻
+                      </span>
+                    </span>
 
-                  <h3>Falta de conhecimento</h3>
+                    <span
+                      className="desafio-face desafio-verso"
+                      aria-hidden={cartaoVirado !== "financeiro"}
+                    >
+                      <Lightbulb size={24} />
 
-                  <p>
-                    Dúvidas sobre quais ferramentas escolher e como utilizá-las.
-                  </p>
-                </article>
+                      <span className="desafio-titulo">Como enfrentar?</span>
 
-                <article className="desafio-card">
-                  <ClipboardList size={28} />
+                      <span className="desafio-texto">
+                        Identifique as necessidades mais importantes do negócio.
+                        Procure ferramentas gratuitas ou de baixo custo e
+                        invista gradualmente, conforme suas possibilidades.
+                      </span>
 
-                  <h3>Ausência de planejamento</h3>
+                      <span className="desafio-acao">Voltar ao desafio ↻</span>
+                    </span>
+                  </span>
+                </button>
 
-                  <p>
-                    Adoção de tecnologias sem objetivos ou estratégias bem
-                    definidos.
-                  </p>
-                </article>
+                {/* Falta de conhecimento */}
+                <button
+                  type="button"
+                  className={`desafio-card desafio-flip ${
+                    cartaoVirado === "conhecimento" ? "virado" : ""
+                  }`}
+                  onClick={() => virarCartao("conhecimento")}
+                  aria-pressed={cartaoVirado === "conhecimento"}
+                  aria-label={
+                    cartaoVirado === "conhecimento"
+                      ? "Voltar ao desafio: Falta de conhecimento"
+                      : "Ver dica para Falta de conhecimento"
+                  }
+                >
+                  <span className="desafio-flip-inner">
+                    <span
+                      className="desafio-face desafio-frente"
+                      aria-hidden={cartaoVirado === "conhecimento"}
+                    >
+                      <BookOpen size={28} />
 
-                <article className="desafio-card">
-                  <Users size={28} />
+                      <span className="desafio-titulo">
+                        Falta de conhecimento
+                      </span>
 
-                  <h3>Resistência às mudanças</h3>
+                      <span className="desafio-texto">
+                        Dúvidas sobre quais ferramentas escolher e como
+                        utilizá-las.
+                      </span>
 
-                  <p>
-                    Dificuldade para adaptar processos e hábitos de trabalho.
-                  </p>
-                </article>
+                      <span className="desafio-acao">
+                        Virar para ver a dica ↻
+                      </span>
+                    </span>
+
+                    <span
+                      className="desafio-face desafio-verso"
+                      aria-hidden={cartaoVirado !== "conhecimento"}
+                    >
+                      <Lightbulb size={24} />
+
+                      <span className="desafio-titulo">Como enfrentar?</span>
+
+                      <span className="desafio-texto">
+                        Busque cursos gratuitos, tutoriais e orientações sobre
+                        ferramentas digitais. Comece aprendendo a utilizar
+                        soluções simples que atendam às necessidades do seu
+                        negócio.
+                      </span>
+
+                      <span className="desafio-acao">Voltar ao desafio ↻</span>
+                    </span>
+                  </span>
+                </button>
+
+                {/* Ausência de planejamento */}
+                <button
+                  type="button"
+                  className={`desafio-card desafio-flip ${
+                    cartaoVirado === "planejamento" ? "virado" : ""
+                  }`}
+                  onClick={() => virarCartao("planejamento")}
+                  aria-pressed={cartaoVirado === "planejamento"}
+                  aria-label={
+                    cartaoVirado === "planejamento"
+                      ? "Voltar ao desafio: Ausência de planejamento"
+                      : "Ver dica para Ausência de planejamento"
+                  }
+                >
+                  <span className="desafio-flip-inner">
+                    <span
+                      className="desafio-face desafio-frente"
+                      aria-hidden={cartaoVirado === "planejamento"}
+                    >
+                      <ClipboardList size={28} />
+
+                      <span className="desafio-titulo">
+                        Ausência de planejamento
+                      </span>
+
+                      <span className="desafio-texto">
+                        Adoção de tecnologias sem objetivos ou estratégias bem
+                        definidos.
+                      </span>
+
+                      <span className="desafio-acao">
+                        Virar para ver a dica ↻
+                      </span>
+                    </span>
+
+                    <span
+                      className="desafio-face desafio-verso"
+                      aria-hidden={cartaoVirado !== "planejamento"}
+                    >
+                      <Lightbulb size={24} />
+
+                      <span className="desafio-titulo">Como enfrentar?</span>
+
+                      <span className="desafio-texto">
+                        Defina o que deseja melhorar na empresa, estabeleça
+                        prioridades e organize pequenas etapas. Acompanhe os
+                        resultados antes de investir em novas tecnologias.
+                      </span>
+
+                      <span className="desafio-acao">Voltar ao desafio ↻</span>
+                    </span>
+                  </span>
+                </button>
+
+                {/* Resistência às mudanças */}
+                <button
+                  type="button"
+                  className={`desafio-card desafio-flip ${
+                    cartaoVirado === "resistencia" ? "virado" : ""
+                  }`}
+                  onClick={() => virarCartao("resistencia")}
+                  aria-pressed={cartaoVirado === "resistencia"}
+                  aria-label={
+                    cartaoVirado === "resistencia"
+                      ? "Voltar ao desafio: Resistência às mudanças"
+                      : "Ver dica para Resistência às mudanças"
+                  }
+                >
+                  <span className="desafio-flip-inner">
+                    <span
+                      className="desafio-face desafio-frente"
+                      aria-hidden={cartaoVirado === "resistencia"}
+                    >
+                      <Users size={28} />
+
+                      <span className="desafio-titulo">
+                        Resistência às mudanças
+                      </span>
+
+                      <span className="desafio-texto">
+                        Dificuldade para adaptar processos e hábitos de
+                        trabalho.
+                      </span>
+
+                      <span className="desafio-acao">
+                        Virar para ver a dica ↻
+                      </span>
+                    </span>
+
+                    <span
+                      className="desafio-face desafio-verso"
+                      aria-hidden={cartaoVirado !== "resistencia"}
+                    >
+                      <Lightbulb size={24} />
+
+                      <span className="desafio-titulo">Como enfrentar?</span>
+
+                      <span className="desafio-texto">
+                        Converse com a equipe sobre os benefícios das novas
+                        ferramentas, ofereça orientações e incentive a
+                        participação de todos. Introduza as mudanças
+                        gradualmente.
+                      </span>
+
+                      <span className="desafio-acao">Voltar ao desafio ↻</span>
+                    </span>
+                  </span>
+                </button>
               </div>
             </div>
           </details>
