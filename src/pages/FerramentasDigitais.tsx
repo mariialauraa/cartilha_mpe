@@ -1,4 +1,4 @@
-import { Camera, MessageCircle, Globe, Smartphone, Eye, X } from "lucide-react";
+import { Camera, MessageCircle, Eye, X } from "lucide-react";
 
 import { useEffect, useState } from "react";
 import "../styles/FerramentasDigitais.css";
@@ -14,16 +14,6 @@ const canaisDigitais = [
     icone: MessageCircle,
     titulo: "Aplicativos de mensagens",
     descricao: "Responder dúvidas, atender clientes e facilitar a comunicação.",
-  },
-  {
-    icone: Globe,
-    titulo: "Sites",
-    descricao: "Apresentar a empresa, seus serviços e informações importantes.",
-  },
-  {
-    icone: Smartphone,
-    titulo: "Aplicativos móveis",
-    descricao: "Oferecer serviços e outras formas de interação com a empresa.",
   },
 ];
 
