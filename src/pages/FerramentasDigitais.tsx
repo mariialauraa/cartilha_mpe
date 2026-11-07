@@ -1,4 +1,12 @@
-import { Camera, MessageCircle, Eye, X } from "lucide-react";
+import {
+  Camera,
+  MessageCircle,
+  Eye,
+  X,
+  Building2,
+  ShoppingBag,
+  Users,
+} from "lucide-react";
 
 import { useEffect, useState } from "react";
 import "../styles/FerramentasDigitais.css";
@@ -186,14 +194,169 @@ function FerramentasDigitais() {
         <section className="ferramentas-secao">
           <details className="ferramentas-expansivel">
             <summary>
-              <h2>Comércio Eletrônico</h2>
+              <h2>
+                Comércio Eletrônico (<em>e-commerce</em>)
+              </h2>
             </summary>
 
             <div className="ferramentas-secao-conteudo">
-              <p>
-                O comércio eletrônico permite realizar vendas de produtos e
-                serviços pela internet, ampliando as oportunidades de negócio.
-              </p>
+              <div className="ferramentas-bloco">
+                <h3>O que é comércio eletrônico?</h3>
+
+                <p>
+                  O comércio eletrônico, também conhecido como{" "}
+                  <em>e-commerce</em>, é a comercialização de produtos e
+                  serviços pela internet. Ele envolve etapas como a apresentação
+                  dos produtos, a realização de pedidos, o pagamento e o
+                  atendimento ao cliente.
+                </p>
+
+                <p>
+                  Para micro e pequenas empresas, essa modalidade pode ampliar
+                  as oportunidades de venda e permitir que os negócios alcancem
+                  consumidores além de sua localização física.
+                </p>
+              </div>
+
+              <div className="ferramentas-bloco">
+                <h3>
+                  Principais modalidades de <em>e-commerce</em>
+                </h3>
+
+                <p>
+                  As transações comerciais pela internet podem acontecer entre
+                  diferentes tipos de participantes.
+                </p>
+
+                <div className="ecommerce-modalidades-grid">
+                  <div className="ecommerce-modalidade-card">
+                    <span className="canal-digital-icone">
+                      <Building2 size={23} strokeWidth={1.8} />
+                    </span>
+
+                    <h4>B2B</h4>
+                    <h5>Empresa para empresa</h5>
+
+                    <p>
+                      Uma pequena fábrica de embalagens vende seus produtos para
+                      outras empresas pela internet.
+                    </p>
+                  </div>
+
+                  <div className="ecommerce-modalidade-card">
+                    <span className="canal-digital-icone">
+                      <ShoppingBag size={23} strokeWidth={1.8} />
+                    </span>
+
+                    <h4>B2C</h4>
+                    <h5>Empresa para consumidor</h5>
+
+                    <p>
+                      Uma pequena loja vende seus produtos diretamente aos
+                      consumidores por meio de uma loja virtual.
+                    </p>
+                  </div>
+
+                  <div className="ecommerce-modalidade-card">
+                    <span className="canal-digital-icone">
+                      <Users size={23} strokeWidth={1.8} />
+                    </span>
+
+                    <h4>C2C</h4>
+                    <h5>Consumidor para consumidor</h5>
+
+                    <p>
+                      Uma pessoa vende um produto usado para outra pessoa por
+                      meio de uma plataforma online.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="ferramentas-bloco">
+                <h3>O que considerar antes de vender online?</h3>
+
+                <p>
+                  Para oferecer uma boa experiência de compra, é importante
+                  planejar algumas etapas.
+                </p>
+
+                <div className="fases-digitais">
+                  <div className="fase-digital">
+                    <span className="fase-numero">01</span>
+
+                    <div className="fase-conteudo">
+                      <h4>Organização do estoque</h4>
+                      <p>
+                        Acompanhe a quantidade de produtos disponíveis e
+                        mantenha o estoque atualizado nos canais de venda. Isso
+                        ajuda a evitar pedidos de produtos indisponíveis e
+                        problemas no atendimento aos clientes.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="fase-digital">
+                    <span className="fase-numero">02</span>
+
+                    <div className="fase-conteudo">
+                      <h4>Entregas e prazos</h4>
+                      <p>
+                        Organize a preparação e o envio dos pedidos,
+                        considerando os custos de transporte e os prazos de
+                        entrega. Informe essas condições com clareza para que os
+                        clientes saibam quando e como receberão seus produtos.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="fase-digital">
+                    <span className="fase-numero">03</span>
+
+                    <div className="fase-conteudo">
+                      <h4>Segurança nas compras</h4>
+                      <p>
+                        Utilize plataformas confiáveis e mecanismos de segurança
+                        para proteger os dados dos clientes durante as compras.
+                        Tenha atenção à proteção das informações pessoais e de
+                        pagamento, utilizando soluções que ajudem a prevenir
+                        fraudes e aumentar a confiança dos consumidores.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="fase-digital">
+                    <span className="fase-numero">04</span>
+
+                    <div className="fase-conteudo">
+                      <h4>Divulgação e relacionamento</h4>
+                      <p>
+                        Utilize as redes sociais para divulgar os produtos e
+                        direcionar os clientes aos canais de venda. Mantenha um
+                        bom atendimento para esclarecer dúvidas e fortalecer o
+                        relacionamento com os consumidores.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="ferramentas-exemplo-pratico">
+                <h3>Exemplo prático</h3>
+
+                <p>
+                  Imagine uma pequena loja que deseja ampliar suas vendas e
+                  alcançar clientes de outras cidades. Para isso, ela pode criar
+                  uma loja virtual para apresentar seus produtos, receber
+                  pedidos e oferecer opções de pagamento.
+                </p>
+
+                <p>
+                  Com esse novo canal de vendas, a empresa pode alcançar
+                  consumidores além de sua localização física e ampliar suas
+                  oportunidades de negócio.
+                </p>
+              </div>
             </div>
           </details>
         </section>

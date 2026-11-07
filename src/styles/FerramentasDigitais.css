@@ -1,3 +1,5 @@
+/* PÁGINA FERRAMENTAS DIGITAIS */
+
 .ferramentas-page {
   width: 100%;
 }
@@ -33,7 +35,7 @@
   margin-bottom: 24px;
 }
 
-/* Seções expansíveis */
+/* SEÇÕES EXPANSÍVEIS */
 
 .ferramentas-expansivel {
   background-color: var(--surface);
@@ -89,7 +91,7 @@
   margin: 0;
 }
 
-/* Blocos de conteúdo */
+/* BLOCOS DE CONTEÚDO */
 
 .ferramentas-bloco {
   margin-bottom: 36px;
@@ -104,6 +106,8 @@
 .ferramentas-bloco > p + p {
   margin-top: 14px;
 }
+
+/* PRESENÇA DIGITAL */
 
 /* Principais canais digitais */
 
@@ -147,7 +151,161 @@
   margin-bottom: 18px;
 }
 
-/* Fases da presença digital */
+/* Botão Ver exemplo */
+
+.canal-exemplo-botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: auto;
+  align-self: flex-start;
+  padding: 9px 14px;
+  background-color: transparent;
+  color: var(--secondary);
+  border: 1px solid var(--secondary);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+}
+
+.canal-exemplo-botao:hover {
+  background-color: var(--surface-highlight);
+}
+
+.canal-exemplo-botao:focus-visible,
+.ferramentas-modal-fechar:focus-visible {
+  outline: 3px solid var(--secondary);
+  outline-offset: 3px;
+}
+
+/* MODAL DOS EXEMPLOS */
+
+/* Fundo do modal */
+
+.ferramentas-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background-color: rgba(21, 59, 91, 0.35);
+}
+
+/* Janela do modal */
+
+.ferramentas-modal {
+  width: 100%;
+  max-width: 1000px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background-color: var(--surface);
+  border-radius: 14px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Cabeçalho do modal */
+
+.ferramentas-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 28px;
+  border-bottom: 1px solid var(--border);
+}
+
+.ferramentas-modal-header h2 {
+  color: var(--primary);
+  font-size: 21px;
+  margin: 0;
+}
+
+.ferramentas-modal-fechar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.ferramentas-modal-fechar:hover {
+  background-color: var(--background-light-blue);
+}
+
+/* Conteúdo do modal */
+
+.ferramentas-modal-conteudo {
+  padding: 28px;
+  text-align: center;
+}
+
+.ferramentas-modal-conteudo p {
+  color: var(--text-secondary);
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 0 0 24px;
+}
+
+.ferramentas-modal-conteudo img {
+  display: block;
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+
+/* COMÉRCIO ELETRÔNICO (E-COMMERCE) */
+
+/* Modalidades B2B, B2C e C2C */
+
+.ecommerce-modalidades-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.ecommerce-modalidade-card {
+  background-color: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 22px;
+}
+
+.ecommerce-modalidade-card h4 {
+  color: var(--primary);
+  font-size: 22px;
+  margin: 0 0 6px;
+}
+
+.ecommerce-modalidade-card h5 {
+  color: var(--primary);
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 12px;
+}
+
+.ecommerce-modalidade-card p {
+  color: var(--text-secondary);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* ETAPAS E ORIENTAÇÕES */
 
 .fases-digitais {
   display: flex;
@@ -192,7 +350,7 @@
   line-height: 1.7;
 }
 
-/* Exemplo prático */
+/* EXEMPLO PRÁTICO */
 
 .ferramentas-exemplo-pratico {
   background-color: var(--surface-highlight);
@@ -216,9 +374,17 @@
   margin-top: 14px;
 }
 
-/* Responsividade */
+/* RESPONSIVIDADE */
+
+@media (max-width: 900px) {
+  .ecommerce-modalidades-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
 
 @media (max-width: 768px) {
+  /* Hero */
+
   .ferramentas-hero {
     padding: 50px 0;
   }
@@ -231,10 +397,14 @@
     font-size: 16px;
   }
 
+  /* Conteúdo principal */
+
   .ferramentas-conteudo {
     padding-top: 40px;
     padding-bottom: 60px;
   }
+
+  /* Seções expansíveis */
 
   .ferramentas-expansivel > summary {
     padding: 18px 20px;
@@ -248,6 +418,8 @@
     padding: 20px;
   }
 
+  /* Blocos de conteúdo */
+
   .ferramentas-bloco {
     margin-bottom: 30px;
   }
@@ -260,6 +432,8 @@
     font-size: 16px;
   }
 
+  /* Canais digitais */
+
   .canais-digitais-grid {
     grid-template-columns: 1fr;
   }
@@ -267,6 +441,12 @@
   .canal-digital-card {
     padding: 20px;
   }
+
+  .canal-exemplo-botao {
+    font-size: 13px;
+  }
+
+  /* Etapas e orientações */
 
   .fase-digital {
     gap: 14px;
@@ -282,6 +462,8 @@
     font-size: 17px;
   }
 
+  /* Exemplo prático */
+
   .ferramentas-exemplo-pratico {
     padding: 20px;
   }
@@ -289,126 +471,9 @@
   .ferramentas-exemplo-pratico h3 {
     font-size: 20px;
   }
-}
 
-/* Botão Ver exemplo */
+  /* Modal */
 
-.canal-exemplo-botao {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin-top: auto;
-  align-self: flex-start;
-  padding: 9px 14px;
-  background-color: transparent;
-  color: var(--secondary);
-  border: 1px solid var(--secondary);
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition:
-    background-color 0.2s,
-    color 0.2s;
-}
-
-.canal-exemplo-botao:hover {
-  background-color: var(--surface-highlight);
-}
-
-.canal-exemplo-botao:focus-visible,
-.ferramentas-modal-fechar:focus-visible {
-  outline: 3px solid var(--secondary);
-  outline-offset: 3px;
-}
-
-/* Fundo do modal */
-
-.ferramentas-modal-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  background-color: rgba(21, 59, 91, 0.35);
-}
-
-/* Janela do modal */
-
-.ferramentas-modal {
-  width: 100%;
-  max-width: 1000px;
-  max-height: 90vh;
-  overflow-y: auto;
-  background-color: var(--surface);
-  border-radius: 14px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-}
-
-/* Cabeçalho */
-
-.ferramentas-modal-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 22px 28px;
-  border-bottom: 1px solid var(--border);
-}
-
-.ferramentas-modal-header h2 {
-  color: var(--primary);
-  font-size: 21px;
-  margin: 0;
-}
-
-.ferramentas-modal-fechar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 36px;
-  height: 36px;
-  background: transparent;
-  border: none;
-  border-radius: 8px;
-  color: var(--text-secondary);
-  cursor: pointer;
-}
-
-.ferramentas-modal-fechar:hover {
-  background-color: var(--background-light-blue);
-}
-
-/* Conteúdo */
-
-.ferramentas-modal-conteudo {
-  padding: 28px;
-  text-align: center;
-}
-
-.ferramentas-modal-conteudo p {
-  color: var(--text-secondary);
-  font-size: 16px;
-  line-height: 1.7;
-  margin: 0 0 24px;
-}
-
-.ferramentas-modal-conteudo img {
-  display: block;
-  width: 100%;
-  max-width: 900px;
-  height: auto;
-  margin: 0 auto;
-  border-radius: 10px;
-}
-
-/* Responsividade */
-
-@media (max-width: 768px) {
   .ferramentas-modal-overlay {
     padding: 12px;
   }
@@ -433,8 +498,16 @@
   .ferramentas-modal-conteudo p {
     font-size: 15px;
   }
+}
 
-  .canal-exemplo-botao {
-    font-size: 13px;
+@media (max-width: 600px) {
+  /* Modalidades de e-commerce */
+
+  .ecommerce-modalidades-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ecommerce-modalidade-card {
+    padding: 20px;
   }
 }
