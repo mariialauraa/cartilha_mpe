@@ -55,14 +55,16 @@ const fasesPresencaDigital = [
 ];
 
 function FerramentasDigitais() {
-  const [modalAberto, setModalAberto] = useState(false);
+  const [modalAberto, setModalAberto] = useState<
+    "instagram" | "whatsapp" | null
+  >(null);
 
   useEffect(() => {
     if (!modalAberto) return;
 
     const fecharComEsc = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        setModalAberto(false);
+        setModalAberto(null);
       }
     };
 
@@ -124,11 +126,18 @@ function FerramentasDigitais() {
                       <h4>{canal.titulo}</h4>
                       <p>{canal.descricao}</p>
 
-                      {canal.titulo === "Redes sociais" && (
+                      {(canal.titulo === "Redes sociais" ||
+                        canal.titulo === "Aplicativos de mensagens") && (
                         <button
                           type="button"
                           className="canal-exemplo-botao"
-                          onClick={() => setModalAberto(true)}
+                          onClick={() =>
+                            setModalAberto(
+                              canal.titulo === "Redes sociais"
+                                ? "instagram"
+                                : "whatsapp",
+                            )
+                          }
                         >
                           <Eye size={17} strokeWidth={1.8} />
                           Ver exemplo
@@ -221,7 +230,7 @@ function FerramentasDigitais() {
           className="ferramentas-modal-overlay"
           onMouseDown={(event) => {
             if (event.target === event.currentTarget) {
-              setModalAberto(false);
+              setModalAberto(null);
             }
           }}
         >
@@ -229,17 +238,19 @@ function FerramentasDigitais() {
             className="ferramentas-modal"
             role="dialog"
             aria-modal="true"
-            aria-labelledby="modal-redes-titulo"
+            aria-labelledby="modal-exemplo-titulo"
           >
             <div className="ferramentas-modal-header">
-              <h2 id="modal-redes-titulo">
-                Exemplo de perfil comercial nas redes sociais
+              <h2 id="modal-exemplo-titulo">
+                {modalAberto === "instagram"
+                  ? "Exemplo de perfil comercial nas redes sociais"
+                  : "Exemplo de perfil comercial no WhatsApp Business"}
               </h2>
 
               <button
                 type="button"
                 className="ferramentas-modal-fechar"
-                onClick={() => setModalAberto(false)}
+                onClick={() => setModalAberto(null)}
                 aria-label="Fechar exemplo"
               >
                 <X size={22} />
@@ -248,14 +259,22 @@ function FerramentasDigitais() {
 
             <div className="ferramentas-modal-conteudo">
               <p>
-                Veja como uma confeitaria pode organizar seu perfil nas redes
-                sociais para apresentar seus produtos e facilitar o contato com
-                os clientes.
+                {modalAberto === "instagram"
+                  ? "Veja como uma confeitaria pode organizar seu perfil nas redes sociais para apresentar seus produtos e facilitar o contato com os clientes."
+                  : "Veja como uma confeitaria pode utilizar o WhatsApp Business para apresentar seus produtos, informar os horários de atendimento e facilitar a comunicação com os clientes."}
               </p>
 
               <img
-                src="/images/perfil_loja.png"
-                alt="Exemplo de perfil comercial de uma confeitaria com foto de perfil, biografia, link de contato, destaques e conteúdos fixados."
+                src={
+                  modalAberto === "instagram"
+                    ? "/images/perfil_loja.png"
+                    : "/images/perfil_wpp.png"
+                }
+                alt={
+                  modalAberto === "instagram"
+                    ? "Exemplo de perfil comercial de uma confeitaria nas redes sociais, destacando foto de perfil, biografia, link de contato, destaques e conteúdos fixados."
+                    : "Exemplo de perfil comercial de uma confeitaria no WhatsApp Business, destacando descrição, horário de atendimento e catálogo de produtos."
+                }
               />
             </div>
           </div>
