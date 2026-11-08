@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { obterClassificacao } from "../utils/classificacao";
 import "../styles/Autoavaliacao.css";
 
 type Etapa = "inicio" | "questionario" | "conclusao";
@@ -92,31 +93,6 @@ const ferramentas: Ferramenta[] = [
       "Conheça ferramentas que podem ajudar a organizar as finanças, as atividades e as informações da sua empresa em um só lugar.",
   },
 ];
-
-function obterClassificacao(pontos: number) {
-  if (pontos <= 3) {
-    return {
-      texto: "Uso inicial",
-      classe: "atencao",
-      descricao: "Sua empresa ainda utiliza pouco essa ferramenta digital.",
-    };
-  }
-
-  if (pontos <= 6) {
-    return {
-      texto: "Uso moderado",
-      classe: "melhoria",
-      descricao:
-        "Sua empresa utiliza essa ferramenta, mas ainda pode ampliar seu uso.",
-    };
-  }
-
-  return {
-    texto: "Uso frequente",
-    classe: "frequente",
-    descricao: "Sua empresa já utiliza essa ferramenta com frequência.",
-  };
-}
 
 export default function Autoavaliacao() {
   const [etapa, setEtapa] = useState<Etapa>("inicio");
