@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import "../styles/Autoavaliacao.css";
 
 type Etapa = "inicio" | "questionario" | "conclusao";
@@ -7,6 +8,12 @@ type Pergunta = {
   id: number;
   categoria: string;
   texto: string;
+};
+
+type Ferramenta = {
+  nome: string;
+  perguntas: number[];
+  recomendacao: string;
 };
 
 const perguntas: Pergunta[] = [
@@ -65,6 +72,52 @@ const perguntas: Pergunta[] = [
 
 const alternativas = ["Não", "Raramente", "Frequentemente", "Sempre"];
 
+const ferramentas: Ferramenta[] = [
+  {
+    nome: "Presença Digital",
+    perguntas: [1, 2, 3],
+    recomendacao:
+      "Explore o uso das redes sociais e de outros canais digitais para divulgar seu negócio, conversar com os clientes e acompanhar os resultados.",
+  },
+  {
+    nome: "Comércio Eletrônico",
+    perguntas: [4, 5, 6],
+    recomendacao:
+      "Conheça as possibilidades de receber pedidos e realizar vendas pela internet. Avalie quais canais fazem sentido para o seu negócio.",
+  },
+  {
+    nome: "Gestão Empresarial (ERP)",
+    perguntas: [7, 8, 9],
+    recomendacao:
+      "Conheça ferramentas que podem ajudar a organizar as finanças, as atividades e as informações da sua empresa em um só lugar.",
+  },
+];
+
+function obterClassificacao(pontos: number) {
+  if (pontos <= 3) {
+    return {
+      texto: "Uso inicial",
+      classe: "atencao",
+      descricao: "Sua empresa ainda utiliza pouco essa ferramenta digital.",
+    };
+  }
+
+  if (pontos <= 6) {
+    return {
+      texto: "Uso moderado",
+      classe: "melhoria",
+      descricao:
+        "Sua empresa utiliza essa ferramenta, mas ainda pode ampliar seu uso.",
+    };
+  }
+
+  return {
+    texto: "Uso frequente",
+    classe: "frequente",
+    descricao: "Sua empresa já utiliza essa ferramenta com frequência.",
+  };
+}
+
 export default function Autoavaliacao() {
   const [etapa, setEtapa] = useState<Etapa>("inicio");
   const [perguntaAtual, setPerguntaAtual] = useState(0);
@@ -105,6 +158,26 @@ export default function Autoavaliacao() {
       setEtapa("inicio");
     }
   };
+
+  // Calcula a pontuação individual de cada ferramenta.
+  const resultados = ferramentas.map((ferramenta) => {
+    const pontos = ferramenta.perguntas.reduce(
+      (total, id) => total + (respostas[id] ?? 0),
+      0,
+    );
+
+    return {
+      ...ferramenta,
+      pontos,
+      percentual: (pontos / 9) * 100,
+      classificacao: obterClassificacao(pontos),
+    };
+  });
+
+  // Identifica as ferramentas que merecem mais atenção.
+  const oportunidades = resultados
+    .filter((resultado) => resultado.pontos <= 6)
+    .sort((a, b) => a.pontos - b.pontos);
 
   return (
     <main className="autoavaliacao-page">
@@ -239,26 +312,111 @@ export default function Autoavaliacao() {
           )}
 
           {etapa === "conclusao" && (
-            <div className="autoavaliacao-card autoavaliacao-inicio">
-              <span className="autoavaliacao-etiqueta">
-                Avaliação concluída
-              </span>
+            <div className="autoavaliacao-card autoavaliacao-resultado">
+              <div className="autoavaliacao-resultado-cabecalho">
+                <span className="autoavaliacao-etiqueta">
+                  Avaliação concluída
+                </span>
 
-              <h2>Você respondeu todas as perguntas!</h2>
+                <h2>Confira seus resultados</h2>
 
-              <p>
-                Suas respostas foram registradas nesta avaliação. Na próxima
-                etapa, vamos apresentar os resultados das três ferramentas
-                digitais.
+                <p>
+                  Veja como sua empresa utiliza cada ferramenta digital e
+                  descubra quais delas podem ser melhor aproveitadas.
+                </p>
+              </div>
+
+              <div className="autoavaliacao-resultados-lista">
+                {resultados.map((resultado) => (
+                  <div
+                    key={resultado.nome}
+                    className="autoavaliacao-resultado-item"
+                  >
+                    <div className="autoavaliacao-resultado-topo">
+                      <h3>{resultado.nome}</h3>
+                      <strong>{resultado.pontos}/9</strong>
+                    </div>
+
+                    <div
+                      className="autoavaliacao-resultado-barra"
+                      role="progressbar"
+                      aria-label={`Pontuação de ${resultado.nome}`}
+                      aria-valuemin={0}
+                      aria-valuemax={9}
+                      aria-valuenow={resultado.pontos}
+                    >
+                      <div
+                        className={`autoavaliacao-resultado-preenchimento ${resultado.classificacao.classe}`}
+                        style={{
+                          width: `${resultado.percentual}%`,
+                        }}
+                      />
+                    </div>
+
+                    <span
+                      className={`autoavaliacao-status ${resultado.classificacao.classe}`}
+                    >
+                      {resultado.classificacao.texto}
+                    </span>
+
+                    <p>{resultado.classificacao.descricao}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="autoavaliacao-recomendacoes">
+                <h3>Oportunidades de melhoria</h3>
+
+                {oportunidades.length > 0 ? (
+                  <>
+                    <p>
+                      Com base nas suas respostas, estas são as ferramentas que
+                      podem receber mais atenção:
+                    </p>
+
+                    <div className="autoavaliacao-recomendacoes-lista">
+                      {oportunidades.map((resultado) => (
+                        <div
+                          key={resultado.nome}
+                          className="autoavaliacao-recomendacao-item"
+                        >
+                          <h4>{resultado.nome}</h4>
+                          <p>{resultado.recomendacao}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                ) : (
+                  <p>
+                    Sua empresa já utiliza as três ferramentas digitais com
+                    frequência. Continue acompanhando suas necessidades e
+                    buscando oportunidades de melhoria.
+                  </p>
+                )}
+              </div>
+
+              <p className="autoavaliacao-aviso">
+                Este resultado é apenas orientativo. A escolha das ferramentas
+                digitais deve considerar as necessidades e a realidade de cada
+                empresa.
               </p>
 
-              <button
-                type="button"
-                className="autoavaliacao-botao-primario"
-                onClick={iniciarAvaliacao}
-              >
-                Refazer avaliação
-              </button>
+              <div className="autoavaliacao-resultado-acoes">
+                <Link
+                  to="/ferramentas-digitais"
+                  className="autoavaliacao-botao-primario"
+                >
+                  Conhecer as ferramentas
+                </Link>
+
+                <button
+                  type="button"
+                  className="autoavaliacao-botao-secundario"
+                  onClick={iniciarAvaliacao}
+                >
+                  Refazer avaliação
+                </button>
+              </div>
             </div>
           )}
         </div>

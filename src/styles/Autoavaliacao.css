@@ -310,3 +310,226 @@
     width: 100%;
   }
 }
+
+/* Resultados da Autoavaliação */
+
+.autoavaliacao-resultado {
+  max-width: 780px;
+}
+
+.autoavaliacao-resultado-cabecalho {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.autoavaliacao-resultado-cabecalho h2 {
+  color: var(--primary, #153b5b);
+  font-size: 26px;
+  margin-bottom: 15px;
+}
+
+.autoavaliacao-resultado-cabecalho p {
+  color: var(--text-secondary, #526174);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* Resultados por ferramenta */
+
+.autoavaliacao-resultados-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.autoavaliacao-resultado-item {
+  padding: 24px;
+  border: 1px solid var(--border, #dde6ed);
+  border-radius: 12px;
+  background-color: var(--surface, #ffffff);
+}
+
+.autoavaliacao-resultado-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 18px;
+}
+
+.autoavaliacao-resultado-topo h3 {
+  font-size: 18px;
+  color: var(--primary, #153b5b);
+  margin: 0;
+}
+
+.autoavaliacao-resultado-topo strong {
+  font-size: 17px;
+  color: var(--primary, #153b5b);
+  white-space: nowrap;
+}
+
+.autoavaliacao-resultado-barra {
+  height: 10px;
+  background-color: var(--border, #dde6ed);
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.autoavaliacao-resultado-preenchimento {
+  height: 100%;
+  border-radius: 20px;
+  transition: width 0.3s ease;
+}
+
+.autoavaliacao-resultado-preenchimento.atencao {
+  background-color: #94a3b8;
+}
+
+.autoavaliacao-resultado-preenchimento.melhoria {
+  background-color: #e5a640;
+}
+
+.autoavaliacao-resultado-preenchimento.frequente {
+  background-color: var(--secondary, #159e98);
+}
+
+/* Classificação */
+
+.autoavaliacao-status {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.autoavaliacao-status.atencao {
+  background-color: #edf1f5;
+  color: #526174;
+}
+
+.autoavaliacao-status.melhoria {
+  background-color: #fff3dd;
+  color: #8b601c;
+}
+
+.autoavaliacao-status.frequente {
+  background-color: #e2f4f2;
+  color: #117b76;
+}
+
+.autoavaliacao-resultado-item p {
+  color: var(--text-secondary, #526174);
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Recomendações */
+
+.autoavaliacao-recomendacoes {
+  margin-top: 35px;
+  padding: 28px;
+  background-color: var(--background-light-blue, #eef5f7);
+  border-radius: 12px;
+}
+
+.autoavaliacao-recomendacoes h3 {
+  color: var(--primary, #153b5b);
+  font-size: 21px;
+  margin: 0 0 15px;
+}
+
+.autoavaliacao-recomendacoes > p {
+  color: var(--text-secondary, #526174);
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.autoavaliacao-recomendacoes-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.autoavaliacao-recomendacao-item {
+  border-left: 3px solid var(--secondary, #159e98);
+  padding-left: 16px;
+}
+
+.autoavaliacao-recomendacao-item h4 {
+  color: var(--primary, #153b5b);
+  font-size: 16px;
+  margin: 0 0 8px;
+}
+
+.autoavaliacao-recomendacao-item p {
+  color: var(--text-secondary, #526174);
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Aviso e ações */
+
+.autoavaliacao-aviso {
+  color: var(--text-secondary, #526174);
+  font-size: 13px;
+  line-height: 1.7;
+  text-align: center;
+  margin: 28px 0;
+}
+
+.autoavaliacao-resultado-acoes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.autoavaliacao-resultado-acoes a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+/* Responsividade dos resultados */
+
+@media (max-width: 768px) {
+  .autoavaliacao-resultado-cabecalho h2 {
+    font-size: 23px;
+  }
+
+  .autoavaliacao-resultado-item {
+    padding: 20px;
+  }
+
+  .autoavaliacao-resultado-topo h3 {
+    font-size: 16px;
+  }
+
+  .autoavaliacao-recomendacoes {
+    padding: 22px 18px;
+  }
+
+  .autoavaliacao-recomendacoes h3 {
+    font-size: 19px;
+  }
+
+  .autoavaliacao-resultado-acoes {
+    flex-direction: column;
+  }
+
+  .autoavaliacao-resultado-acoes a,
+  .autoavaliacao-resultado-acoes button {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
