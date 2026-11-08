@@ -120,7 +120,10 @@ function FerramentasDigitais() {
       <div className="container ferramentas-conteudo">
         {/* PRESENÇA DIGITAL */}
         <section className="ferramentas-secao">
-          <details className="ferramentas-expansivel">
+          <details
+            name="ferramentas-digitais"
+            className="ferramentas-expansivel"
+          >
             <summary>
               <h2>Presença Digital</h2>
             </summary>
@@ -223,7 +226,10 @@ function FerramentasDigitais() {
 
         {/* COMÉRCIO ELETRÔNICO */}
         <section className="ferramentas-secao">
-          <details className="ferramentas-expansivel">
+          <details
+            name="ferramentas-digitais"
+            className="ferramentas-expansivel"
+          >
             <summary>
               <h2>
                 Comércio Eletrônico (<em>e-commerce</em>)
@@ -394,7 +400,10 @@ function FerramentasDigitais() {
 
         {/* SISTEMAS ERP */}
         <section className="ferramentas-secao">
-          <details className="ferramentas-expansivel">
+          <details
+            name="ferramentas-digitais"
+            className="ferramentas-expansivel"
+          >
             <summary>
               <h2>Sistemas de Gestão Empresarial (ERP)</h2>
             </summary>
