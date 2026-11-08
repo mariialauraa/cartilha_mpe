@@ -553,3 +553,138 @@
     padding: 20px;
   }
 }
+
+/* Refinamento visual */
+
+.ferramentas-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: linear-gradient(120deg, #eef5f7 0%, #e8f5f2 100%);
+  padding: clamp(62px, 8vw, 92px) 0;
+}
+
+.ferramentas-hero::after {
+  position: absolute;
+  z-index: -1;
+  top: -210px;
+  right: max(-100px, calc((100vw - 1300px) / 2));
+  width: 470px;
+  height: 470px;
+  border: 1px solid rgba(21, 158, 152, 0.12);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 42px rgba(21, 158, 152, 0.035),
+    0 0 0 88px rgba(21, 158, 152, 0.025);
+  content: "";
+}
+
+.ferramentas-hero h1 {
+  font-size: clamp(36px, 5vw, 50px);
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+}
+
+.ferramentas-hero p {
+  font-size: clamp(16px, 1.5vw, 18px);
+}
+
+.ferramentas-expansivel {
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(21, 59, 91, 0.045);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.ferramentas-expansivel:hover {
+  border-color: rgba(21, 158, 152, 0.38);
+  box-shadow: var(--shadow-card);
+}
+
+.ferramentas-expansivel > summary {
+  min-height: 76px;
+  background: linear-gradient(105deg, #f3f8fa, #eef7f5);
+}
+
+.ferramentas-expansivel > summary h2 {
+  font-size: clamp(20px, 2.4vw, 24px);
+  letter-spacing: -0.02em;
+}
+
+.ferramentas-expansivel > summary:focus-visible {
+  outline: 3px solid var(--secondary);
+  outline-offset: -4px;
+}
+
+.canal-digital-card,
+.ecommerce-modalidade-card,
+.erp-modulo-card {
+  background-color: var(--surface);
+  box-shadow: 0 4px 14px rgba(21, 59, 91, 0.035);
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.canal-digital-card:hover,
+.ecommerce-modalidade-card:hover,
+.erp-modulo-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(21, 158, 152, 0.4);
+  box-shadow: var(--shadow-card);
+}
+
+.canal-digital-icone {
+  color: var(--secondary-hover);
+}
+
+.canal-exemplo-botao {
+  color: var(--secondary-hover);
+  border-color: var(--secondary);
+}
+
+.canal-exemplo-botao:hover {
+  color: var(--secondary-hover);
+  background-color: var(--surface-highlight);
+}
+
+.fase-numero {
+  color: var(--secondary-hover);
+}
+
+.ferramentas-exemplo-pratico {
+  background: linear-gradient(110deg, #eaf6f3, #f3f8f9);
+  border-radius: 12px;
+}
+
+.ferramentas-modal {
+  border: 1px solid rgba(221, 230, 237, 0.8);
+  border-radius: 18px;
+  box-shadow: 0 24px 70px rgba(21, 59, 91, 0.24);
+}
+
+.ferramentas-modal-overlay {
+  background-color: rgba(16, 39, 59, 0.52);
+  backdrop-filter: blur(4px);
+}
+
+.ferramentas-modal-conteudo img {
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 24px rgba(21, 59, 91, 0.08);
+}
+
+@media (max-width: 768px) {
+  .ferramentas-hero {
+    padding: 58px 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .canal-digital-card:hover,
+  .ecommerce-modalidade-card:hover,
+  .erp-modulo-card:hover {
+    transform: none;
+  }
+}

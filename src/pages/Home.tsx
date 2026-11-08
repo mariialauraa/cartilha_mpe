@@ -17,9 +17,14 @@ function Home() {
               empresa.
             </p>
 
-            <a href="#conteudos" className="btn-primary">
-              Explorar a cartilha →
-            </a>
+            <div className="hero-actions">
+              <a href="#conteudos" className="btn-primary">
+                Explorar a cartilha →
+              </a>
+              <Link to="/autoavaliacao" className="btn-secondary">
+                Fazer autoavaliação
+              </Link>
+            </div>
           </div>
 
           <div className="hero-illustration">

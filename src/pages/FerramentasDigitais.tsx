@@ -123,6 +123,7 @@ function FerramentasDigitais() {
           <details
             name="ferramentas-digitais"
             className="ferramentas-expansivel"
+            open
           >
             <summary>
               <h2>Presença Digital</h2>

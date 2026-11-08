@@ -431,3 +431,137 @@
     transition: none;
   }
 }
+
+/* Refinamento visual */
+
+.transformacao-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: linear-gradient(120deg, #eef5f7 0%, #e8f5f2 100%);
+  padding: clamp(62px, 8vw, 92px) 0;
+}
+
+.transformacao-hero::after {
+  position: absolute;
+  z-index: -1;
+  top: -210px;
+  right: max(-100px, calc((100vw - 1300px) / 2));
+  width: 470px;
+  height: 470px;
+  border: 1px solid rgba(21, 158, 152, 0.12);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 42px rgba(21, 158, 152, 0.035),
+    0 0 0 88px rgba(21, 158, 152, 0.025);
+  content: "";
+}
+
+.transformacao-hero h1,
+.ferramentas-hero h1 {
+  font-size: clamp(36px, 5vw, 50px);
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+}
+
+.transformacao-hero p,
+.ferramentas-hero p {
+  font-size: clamp(16px, 1.5vw, 18px);
+}
+
+.transformacao-conceito,
+.transformacao-beneficios,
+.transformacao-desafios {
+  padding-top: 36px;
+}
+
+.transformacao-desafios {
+  padding-bottom: 80px;
+}
+
+.secao-expansivel {
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(21, 59, 91, 0.045);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.secao-expansivel:hover {
+  border-color: rgba(21, 158, 152, 0.38);
+  box-shadow: var(--shadow-card);
+}
+
+.secao-expansivel > summary {
+  min-height: 76px;
+  background: linear-gradient(105deg, #f3f8fa, #eef7f5);
+}
+
+.secao-expansivel > summary h2 {
+  font-size: clamp(20px, 2.4vw, 24px);
+  letter-spacing: -0.02em;
+}
+
+.secao-expansivel > summary:focus-visible {
+  outline: 3px solid var(--secondary);
+  outline-offset: -4px;
+}
+
+.exemplo-pratico {
+  background: linear-gradient(110deg, #f0f8f7, #f7fafb);
+  border-radius: 12px;
+}
+
+.beneficio-card:not(.desafio-flip),
+.desafio-card:not(.desafio-flip) {
+  box-shadow: 0 4px 14px rgba(21, 59, 91, 0.04);
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.beneficio-card:not(.desafio-flip):hover,
+.desafio-card:not(.desafio-flip):hover {
+  transform: translateY(-4px);
+  border-color: rgba(21, 158, 152, 0.4);
+  box-shadow: var(--shadow-card);
+}
+
+.desafio-face {
+  box-shadow: 0 4px 14px rgba(21, 59, 91, 0.04);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.desafio-flip:hover .desafio-frente {
+  border-color: rgba(21, 158, 152, 0.45);
+  box-shadow: var(--shadow-card);
+}
+
+.desafio-verso {
+  background: linear-gradient(135deg, #f2f8f8, #fffaf0);
+}
+
+.desafio-acao {
+  color: var(--secondary-hover);
+}
+
+@media (max-width: 768px) {
+  .transformacao-hero {
+    padding: 58px 0;
+  }
+
+  .transformacao-conceito,
+  .transformacao-beneficios {
+    padding-top: 28px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .beneficio-card:not(.desafio-flip):hover,
+  .desafio-card:not(.desafio-flip):hover {
+    transform: none;
+  }
+}

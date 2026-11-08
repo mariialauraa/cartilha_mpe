@@ -1,5 +1,7 @@
 .header {
-  background-color: var(--background);
+  position: relative;
+  z-index: 1;
+  background-color: var(--surface);
   border-bottom: 1px solid var(--border);
 }
 
@@ -16,15 +18,17 @@
   align-items: center;
   gap: 12px;
   color: var(--primary);
-  font-size: 19px;
+  font-size: 18px;
   font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 .logo-icon {
-  background-color: var(--secondary);
+  background: linear-gradient(135deg, var(--secondary), var(--secondary-hover));
   color: var(--surface);
   padding: 9px 12px;
-  border-radius: 10px;
+  border-radius: 11px;
+  box-shadow: 0 4px 12px rgba(21, 158, 152, 0.2);
 }
 
 .nav {
@@ -34,9 +38,11 @@
 }
 
 .nav a {
+  position: relative;
   color: var(--text-secondary);
   font-size: 16px;
-  transition: color 0.2s;
+  padding: 8px 0;
+  transition: color 0.2s ease;
 }
 
 .nav a:hover {
@@ -59,6 +65,17 @@
 .nav a.active {
   color: var(--secondary-hover);
   font-weight: 700;
+}
+
+.nav a.active::after {
+  position: absolute;
+  right: 0;
+  bottom: 1px;
+  left: 0;
+  height: 2px;
+  border-radius: 2px;
+  background-color: var(--secondary);
+  content: "";
 }
 
 .nav a:focus-visible,
