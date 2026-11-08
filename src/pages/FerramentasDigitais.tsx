@@ -6,6 +6,11 @@ import {
   Building2,
   ShoppingBag,
   Users,
+  BarChart3,
+  ShoppingCart,
+  Package,
+  Wallet,
+  Contact,
 } from "lucide-react";
 
 import { useEffect, useState } from "react";
@@ -54,7 +59,7 @@ const fasesPresencaDigital = [
 
 function FerramentasDigitais() {
   const [modalAberto, setModalAberto] = useState<
-    "instagram" | "whatsapp" | null
+    "instagram" | "whatsapp" | "erp" | null
   >(null);
 
   useEffect(() => {
@@ -72,6 +77,32 @@ function FerramentasDigitais() {
       window.removeEventListener("keydown", fecharComEsc);
     };
   }, [modalAberto]);
+
+  const exemplos = {
+    instagram: {
+      titulo: "Exemplo de perfil comercial nas redes sociais",
+      descricao:
+        "Veja como uma confeitaria pode organizar seu perfil nas redes sociais para apresentar seus produtos e facilitar o contato com os clientes.",
+      imagem: "/images/perfil_loja.png",
+      alt: "Exemplo de perfil comercial de uma confeitaria nas redes sociais.",
+    },
+    whatsapp: {
+      titulo: "Exemplo de perfil comercial no WhatsApp Business",
+      descricao:
+        "Veja como uma confeitaria pode utilizar o WhatsApp Business para apresentar seus produtos, informar os horários de atendimento e facilitar a comunicação com os clientes.",
+      imagem: "/images/perfil_wpp.png",
+      alt: "Exemplo de perfil comercial de uma confeitaria no WhatsApp Business.",
+    },
+    erp: {
+      titulo: "Exemplo de sistema de gestão empresarial (ERP)",
+      descricao:
+        "Veja como um sistema ERP pode integrar informações de vendas, compras, estoque, financeiro, recursos humanos e gestão de clientes.",
+      imagem: "/images/exemplo_erp.png",
+      alt: "Diagrama de um sistema ERP integrando vendas, compras, estoque, financeiro, recursos humanos e gestão de clientes.",
+    },
+  };
+
+  const exemploAtual = modalAberto ? exemplos[modalAberto] : null;
 
   return (
     <main className="ferramentas-page">
@@ -369,16 +400,176 @@ function FerramentasDigitais() {
             </summary>
 
             <div className="ferramentas-secao-conteudo">
-              <p>
-                Os sistemas ERP ajudam a integrar e organizar informações
-                relacionadas às diferentes atividades de uma empresa.
-              </p>
+              <div className="ferramentas-bloco">
+                <h3>O que é um sistema ERP?</h3>
+
+                <p>
+                  Um ERP é um sistema de gestão que reúne informações de
+                  diferentes áreas da empresa em um único lugar, facilitando a
+                  organização e o acompanhamento das atividades.
+                </p>
+
+                <p>
+                  Com ele, é possível integrar informações relacionadas a
+                  vendas, compras, estoque, finanças e outras áreas, reduzindo a
+                  repetição de dados e ajudando na tomada de decisões.
+                </p>
+              </div>
+
+              <div className="ferramentas-bloco">
+                <h3>Quais áreas um ERP pode integrar?</h3>
+
+                <p>
+                  Os sistemas ERP podem ser organizados em módulos, de acordo
+                  com as necessidades de cada empresa.
+                </p>
+
+                <div className="erp-modulos-grid">
+                  <div className="erp-modulo-card">
+                    <span className="canal-digital-icone">
+                      <BarChart3 size={23} strokeWidth={1.8} />
+                    </span>
+                    <h4>Vendas</h4>
+                    <p>Acompanhar pedidos, clientes e faturamento.</p>
+                  </div>
+
+                  <div className="erp-modulo-card">
+                    <span className="canal-digital-icone">
+                      <ShoppingCart size={23} strokeWidth={1.8} />
+                    </span>
+                    <h4>Compras</h4>
+                    <p>Organizar fornecedores, cotações e compras.</p>
+                  </div>
+
+                  <div className="erp-modulo-card">
+                    <span className="canal-digital-icone">
+                      <Package size={23} strokeWidth={1.8} />
+                    </span>
+                    <h4>Estoque</h4>
+                    <p>Controlar produtos, movimentações e inventário.</p>
+                  </div>
+
+                  <div className="erp-modulo-card">
+                    <span className="canal-digital-icone">
+                      <Wallet size={23} strokeWidth={1.8} />
+                    </span>
+                    <h4>Financeiro</h4>
+                    <p>Acompanhar contas a pagar e receber e fluxo de caixa.</p>
+                  </div>
+
+                  <div className="erp-modulo-card">
+                    <span className="canal-digital-icone">
+                      <Users size={23} strokeWidth={1.8} />
+                    </span>
+                    <h4>Recursos Humanos</h4>
+                    <p>
+                      Organizar informações relacionadas aos colaboradores,
+                      folha de pagamento e benefícios.
+                    </p>
+                  </div>
+
+                  <div className="erp-modulo-card">
+                    <span className="canal-digital-icone">
+                      <Contact size={23} strokeWidth={1.8} />
+                    </span>
+                    <h4>Gestão de clientes (CRM)</h4>
+                    <p>
+                      Reunir informações de clientes, contatos e relacionamento.
+                    </p>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  className="canal-exemplo-botao erp-exemplo-botao"
+                  onClick={() => setModalAberto("erp")}
+                >
+                  <Eye size={17} strokeWidth={1.8} />
+                  Ver exemplo de sistema integrado
+                </button>
+              </div>
+
+              <div className="ferramentas-bloco">
+                <h3>O que considerar antes de adotar um ERP?</h3>
+
+                <p>
+                  Antes de escolher um sistema ERP, é importante considerar as
+                  necessidades e as condições da empresa.
+                </p>
+
+                <div className="fases-digitais">
+                  <div className="fase-digital">
+                    <span className="fase-numero">01</span>
+
+                    <div className="fase-conteudo">
+                      <h4>Necessidades da empresa</h4>
+                      <p>
+                        Identifique quais atividades precisam de mais
+                        organização e quais módulos são mais adequados ao seu
+                        negócio.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="fase-digital">
+                    <span className="fase-numero">02</span>
+
+                    <div className="fase-conteudo">
+                      <h4>Custos de implantação e manutenção</h4>
+                      <p>
+                        Considere os custos envolvidos na implantação do sistema
+                        e na sua manutenção ao longo do tempo.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="fase-digital">
+                    <span className="fase-numero">03</span>
+
+                    <div className="fase-conteudo">
+                      <h4>Integração com outras ferramentas</h4>
+                      <p>
+                        Avalie as dificuldades de integração com os sistemas e
+                        plataformas que a empresa já utiliza.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="fase-digital">
+                    <span className="fase-numero">04</span>
+
+                    <div className="fase-conteudo">
+                      <h4>Capacitação da equipe</h4>
+                      <p>
+                        Prepare os colaboradores para utilizar o sistema e
+                        aproveitar melhor suas funcionalidades.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="ferramentas-exemplo-pratico">
+                <h3>Exemplo prático</h3>
+
+                <p>
+                  Imagine uma pequena loja que precisa acompanhar suas vendas,
+                  controlar o estoque e organizar as contas da empresa.
+                </p>
+
+                <p>
+                  Com um sistema ERP, essas informações podem ser reunidas em um
+                  único lugar, facilitando o acompanhamento das operações e
+                  ajudando o responsável pelo negócio a tomar decisões com base
+                  nos dados disponíveis.
+                </p>
+              </div>
             </div>
           </details>
         </section>
       </div>
 
-      {modalAberto && (
+      {exemploAtual && (
         <div
           className="ferramentas-modal-overlay"
           onMouseDown={(event) => {
@@ -394,11 +585,7 @@ function FerramentasDigitais() {
             aria-labelledby="modal-exemplo-titulo"
           >
             <div className="ferramentas-modal-header">
-              <h2 id="modal-exemplo-titulo">
-                {modalAberto === "instagram"
-                  ? "Exemplo de perfil comercial nas redes sociais"
-                  : "Exemplo de perfil comercial no WhatsApp Business"}
-              </h2>
+              <h2 id="modal-exemplo-titulo">{exemploAtual.titulo}</h2>
 
               <button
                 type="button"
@@ -411,24 +598,9 @@ function FerramentasDigitais() {
             </div>
 
             <div className="ferramentas-modal-conteudo">
-              <p>
-                {modalAberto === "instagram"
-                  ? "Veja como uma confeitaria pode organizar seu perfil nas redes sociais para apresentar seus produtos e facilitar o contato com os clientes."
-                  : "Veja como uma confeitaria pode utilizar o WhatsApp Business para apresentar seus produtos, informar os horários de atendimento e facilitar a comunicação com os clientes."}
-              </p>
+              <p>{exemploAtual.descricao}</p>
 
-              <img
-                src={
-                  modalAberto === "instagram"
-                    ? "/images/perfil_loja.png"
-                    : "/images/perfil_wpp.png"
-                }
-                alt={
-                  modalAberto === "instagram"
-                    ? "Exemplo de perfil comercial de uma confeitaria nas redes sociais, destacando foto de perfil, biografia, link de contato, destaques e conteúdos fixados."
-                    : "Exemplo de perfil comercial de uma confeitaria no WhatsApp Business, destacando descrição, horário de atendimento e catálogo de produtos."
-                }
-              />
+              <img src={exemploAtual.imagem} alt={exemploAtual.alt} />
             </div>
           </div>
         </div>
