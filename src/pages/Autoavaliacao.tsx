@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { dicasAutoavaliacao } from "../data/dicasAutoavaliacao";
+import { baixarManualAutoavaliacao } from "../utils/baixarManualAutoavaliacao";
 import {
   obterClassificacao,
   type ClasseClassificacao,
@@ -159,6 +160,7 @@ export default function Autoavaliacao() {
   const [etapa, setEtapa] = useState<Etapa>("inicio");
   const [perguntaAtual, setPerguntaAtual] = useState(0);
   const [respostas, setRespostas] = useState<Respostas>({});
+  const [erroDownload, setErroDownload] = useState<string | null>(null);
 
   const pergunta = perguntas[perguntaAtual];
   const respostaSelecionada = respostas[pergunta.id];
@@ -234,6 +236,27 @@ export default function Autoavaliacao() {
   const oportunidades = resultados
     .filter((resultado) => resultado.pontos <= 6)
     .sort((a, b) => a.pontos - b.pontos);
+
+  const baixarManual = async () => {
+    setErroDownload(null);
+
+    try {
+      await baixarManualAutoavaliacao(
+        resultados.map((resultado) => ({
+          nome: resultado.nome,
+          pontos: resultado.pontos,
+          classificacao: resultado.classificacao,
+          recomendacao: resultado.recomendacao,
+          dicas: resultado.dicas[resultado.classificacao.classe],
+        })),
+      );
+    } catch (erro) {
+      console.error("Falha ao gerar o manual da autoavaliação.", erro);
+      setErroDownload(
+        "Não foi possível gerar o manual agora. Tente novamente.",
+      );
+    }
+  };
 
   return (
     <main className="autoavaliacao-page">
@@ -494,6 +517,12 @@ export default function Autoavaliacao() {
                 empresa.
               </p>
 
+              {erroDownload && (
+                <p className="autoavaliacao-erro-download" role="alert">
+                  {erroDownload}
+                </p>
+              )}
+
               <div className="autoavaliacao-resultado-acoes">
                 <Link
                   to="/ferramentas-digitais"
@@ -508,6 +537,14 @@ export default function Autoavaliacao() {
                   onClick={iniciarAvaliacao}
                 >
                   Refazer avaliação
+                </button>
+
+                <button
+                  type="button"
+                  className="autoavaliacao-botao-primario"
+                  onClick={baixarManual}
+                >
+                  Baixar resultado completo
                 </button>
               </div>
             </div>

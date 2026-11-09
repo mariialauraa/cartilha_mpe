@@ -549,6 +549,14 @@
   text-decoration: none;
 }
 
+.autoavaliacao-erro-download {
+  color: #a12622;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 16px;
+  text-align: center;
+}
+
 /* Responsividade dos resultados */
 
 @media (max-width: 768px) {

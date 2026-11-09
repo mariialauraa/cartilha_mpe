@@ -1,8 +1,13 @@
-import { beforeEach, describe, it, expect } from 'vitest';
+import { beforeEach, describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { BrowserRouter } from 'react-router-dom';
 import Autoavaliacao from '../../pages/Autoavaliacao';
+import { baixarManualAutoavaliacao } from '../../utils/baixarManualAutoavaliacao';
+
+vi.mock('../../utils/baixarManualAutoavaliacao', () => ({
+  baixarManualAutoavaliacao: vi.fn().mockResolvedValue(undefined),
+}));
 
 const renderWithRouter = (component: React.ReactElement) => {
   return render(<BrowserRouter>{component}</BrowserRouter>);
@@ -12,6 +17,8 @@ describe('Autoavaliacao - Fluxo Básico', () => {
   beforeEach(() => {
     sessionStorage.clear();
     localStorage.clear();
+    vi.mocked(baixarManualAutoavaliacao).mockReset();
+    vi.mocked(baixarManualAutoavaliacao).mockResolvedValue(undefined);
   });
 
   it('deve completar a avaliação com 9 perguntas', async () => {
@@ -109,6 +116,76 @@ describe('Autoavaliacao - Fluxo Básico', () => {
         'Avalie um canal simples para apresentar produtos e receber pedidos pela internet.'
       )
     ).toBeNull();
+  });
+
+  it('deve baixar o resultado com as dicas correspondentes a cada classificação', async () => {
+    renderWithRouter(<Autoavaliacao />);
+    await userEvent.click(screen.getByRole('button', { name: /começar/i }));
+
+    for (let i = 0; i < 9; i++) {
+      await userEvent.click(screen.getAllByRole('radio')[0]);
+      await userEvent.click(
+        screen.getByRole('button', { name: /próxima|finalizar/i }),
+      );
+    }
+
+    await userEvent.click(
+      screen.getByRole('button', { name: /baixar resultado completo/i }),
+    );
+
+    expect(baixarManualAutoavaliacao).toHaveBeenCalledWith(
+      expect.arrayContaining([
+        expect.objectContaining({
+          nome: 'Presença Digital',
+          pontos: 0,
+          classificacao: expect.objectContaining({ classe: 'atencao' }),
+          dicas: expect.arrayContaining([
+            'Escolha um canal digital adequado ao seu negócio, como uma rede social ou um aplicativo de mensagens.',
+          ]),
+        }),
+        expect.objectContaining({
+          nome: 'Comércio Eletrônico',
+          pontos: 0,
+          classificacao: expect.objectContaining({ classe: 'atencao' }),
+          dicas: expect.arrayContaining([
+            'Avalie um canal simples para apresentar produtos e receber pedidos pela internet.',
+          ]),
+        }),
+        expect.objectContaining({
+          nome: 'Gestão Empresarial (ERP)',
+          pontos: 0,
+          classificacao: expect.objectContaining({ classe: 'atencao' }),
+          dicas: expect.arrayContaining([
+            'Identifique quais atividades precisam de mais organização, como finanças, vendas ou estoque.',
+          ]),
+        }),
+      ]),
+    );
+  });
+
+  it('deve informar quando não consegue gerar o manual', async () => {
+    vi.mocked(baixarManualAutoavaliacao).mockRejectedValueOnce(
+      new Error('Canvas indisponível'),
+    );
+    const erro = vi.spyOn(console, 'error').mockImplementation(() => {});
+    renderWithRouter(<Autoavaliacao />);
+    await userEvent.click(screen.getByRole('button', { name: /começar/i }));
+
+    for (let i = 0; i < 9; i++) {
+      await userEvent.click(screen.getAllByRole('radio')[0]);
+      await userEvent.click(
+        screen.getByRole('button', { name: /próxima|finalizar/i }),
+      );
+    }
+
+    await userEvent.click(
+      screen.getByRole('button', { name: /baixar resultado completo/i }),
+    );
+
+    expect((await screen.findByRole('alert')).textContent).toContain(
+      'Não foi possível gerar o manual agora. Tente novamente.',
+    );
+    erro.mockRestore();
   });
 
   it('deve restaurar o resultado depois que a página for montada novamente', async () => {
