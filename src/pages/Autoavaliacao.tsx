@@ -544,7 +544,7 @@ export default function Autoavaliacao() {
                   className="autoavaliacao-botao-primario"
                   onClick={baixarManual}
                 >
-                  Baixar resultado completo
+                  Baixar resultado completo (PDF)
                 </button>
               </div>
             </div>

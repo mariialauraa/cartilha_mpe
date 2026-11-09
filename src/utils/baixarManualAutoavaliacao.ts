@@ -1,3 +1,4 @@
+import type { jsPDF as JsPDF } from "jspdf";
 import type { ClasseClassificacao } from "./classificacao";
 
 type ResultadoManual = {
@@ -12,226 +13,218 @@ type ResultadoManual = {
   dicas: string[];
 };
 
-const LARGURA = 1200;
-const ESCALA = 2;
-const MARGEM = 64;
-const LARGURA_CARTAO = LARGURA - MARGEM * 2;
-const LARGURA_CONTEUDO = LARGURA_CARTAO - 88;
-const ALTURA_LINHA = 32;
+type CartaoManual = {
+  resultado: ResultadoManual;
+  recomendacaoLinhas: string[];
+  dicasLinhas: string[][];
+  altura: number;
+};
+
+const LARGURA_PAGINA = 210;
+const ALTURA_PAGINA = 297;
+const MARGEM = 17;
+const LARGURA_CONTEUDO = LARGURA_PAGINA - MARGEM * 2;
+const LIMITE_INFERIOR = ALTURA_PAGINA - 18;
+const ESPACAMENTO_LINHA = (tamanhoFonte: number) =>
+  (tamanhoFonte * 1.3 * 25.4) / 72;
 
 const coresClassificacao: Record<
   ClasseClassificacao,
-  { fundo: string; texto: string }
+  { fundo: [number, number, number]; texto: [number, number, number] }
 > = {
-  atencao: { fundo: "#edf1f5", texto: "#526174" },
-  melhoria: { fundo: "#fff3dd", texto: "#8b601c" },
-  frequente: { fundo: "#e2f4f2", texto: "#117b76" },
+  atencao: { fundo: [237, 241, 245], texto: [82, 97, 116] },
+  melhoria: { fundo: [255, 243, 221], texto: [139, 96, 28] },
+  frequente: { fundo: [226, 244, 242], texto: [17, 123, 118] },
 };
 
-function quebrarTexto(
-  contexto: CanvasRenderingContext2D,
-  texto: string,
-  larguraMaxima: number,
-): string[] {
-  const palavras = texto.split(/\s+/);
-  const linhas: string[] = [];
-  let linhaAtual = "";
+function prepararCartao(documento: JsPDF, resultado: ResultadoManual): CartaoManual {
+  const larguraTexto = LARGURA_CONTEUDO - 20;
+  documento.setFont("helvetica", "normal");
+  documento.setFontSize(10);
+  const recomendacaoLinhas = documento.splitTextToSize(
+    resultado.recomendacao,
+    larguraTexto,
+  );
+  const dicasLinhas = resultado.dicas.map((dica) =>
+    documento.splitTextToSize(`- ${dica}`, larguraTexto),
+  );
 
-  for (const palavra of palavras) {
-    const tentativa = linhaAtual ? `${linhaAtual} ${palavra}` : palavra;
+  const altura =
+    8 +
+    7 +
+    5 +
+    8 +
+    5 +
+    recomendacaoLinhas.length * ESPACAMENTO_LINHA(10) +
+    5 +
+    6 +
+    2 +
+    dicasLinhas.reduce(
+      (total, linhas) =>
+        total + linhas.length * ESPACAMENTO_LINHA(9.5) + 2.5,
+      0,
+    ) +
+    7;
 
-    if (linhaAtual && contexto.measureText(tentativa).width > larguraMaxima) {
-      linhas.push(linhaAtual);
-      linhaAtual = palavra;
-    } else {
-      linhaAtual = tentativa;
-    }
-  }
-
-  if (linhaAtual) linhas.push(linhaAtual);
-  return linhas;
+  return { resultado, recomendacaoLinhas, dicasLinhas, altura };
 }
 
-function desenharTexto(
-  contexto: CanvasRenderingContext2D,
-  texto: string,
-  x: number,
-  y: number,
-  larguraMaxima: number,
-): number {
-  const linhas = quebrarTexto(contexto, texto, larguraMaxima);
-  linhas.forEach((linha, indice) => {
-    contexto.fillText(linha, x, y + indice * ALTURA_LINHA);
-  });
-  return y + linhas.length * ALTURA_LINHA;
-}
+function adicionarCabecalho(documento: JsPDF, primeiraPagina: boolean) {
+  documento.setTextColor(21, 59, 91);
+  documento.setFont("helvetica", "bold");
+  documento.setFontSize(primeiraPagina ? 18 : 10);
+  documento.text(
+    primeiraPagina
+      ? "Resultado da Autoavaliação Digital"
+      : "Autoavaliação Digital - Resultado e orientações",
+    MARGEM,
+    primeiraPagina ? 22 : 15,
+  );
 
-function alturaCartao(
-  contexto: CanvasRenderingContext2D,
-  resultado: ResultadoManual,
-): number {
-  let altura = 34 + 34 + 18 + 34 + 20;
-
-  contexto.font = "22px Arial, sans-serif";
-  altura +=
-    quebrarTexto(contexto, resultado.recomendacao, LARGURA_CONTEUDO).length *
-      ALTURA_LINHA +
-    22;
-
-  contexto.font = "bold 21px Arial, sans-serif";
-  altura += 28 + 12;
-
-  contexto.font = "21px Arial, sans-serif";
-  for (const dica of resultado.dicas) {
-    altura +=
-      quebrarTexto(contexto, `• ${dica}`, LARGURA_CONTEUDO).length *
-        ALTURA_LINHA +
-      12;
+  if (primeiraPagina) {
+    documento.setFont("helvetica", "normal");
+    documento.setTextColor(82, 97, 116);
+    documento.setFontSize(10);
+    documento.text("Resumo e orientações para sua empresa", MARGEM, 31);
+    documento.setFontSize(8);
+    documento.text(new Date().toLocaleDateString("pt-BR"), MARGEM, 37);
+    documento.setDrawColor(221, 230, 237);
+    documento.line(MARGEM, 43, LARGURA_PAGINA - MARGEM, 43);
+  } else {
+    documento.setDrawColor(221, 230, 237);
+    documento.line(MARGEM, 19, LARGURA_PAGINA - MARGEM, 19);
   }
-
-  return altura + 30;
 }
 
 function desenharCartao(
-  contexto: CanvasRenderingContext2D,
-  resultado: ResultadoManual,
+  documento: JsPDF,
+  cartao: CartaoManual,
   y: number,
-): number {
-  const altura = alturaCartao(contexto, resultado);
+): void {
+  const { resultado } = cartao;
   const x = MARGEM;
-  const conteudoX = x + 44;
-  let cursorY = y + 34;
-
-  contexto.fillStyle = "#f8fafc";
-  contexto.fillRect(x, y, LARGURA_CARTAO, altura);
-  contexto.strokeStyle = "#dde6ed";
-  contexto.lineWidth = 2;
-  contexto.strokeRect(x, y, LARGURA_CARTAO, altura);
-  contexto.fillStyle = "#159e98";
-  contexto.fillRect(x, y, 8, altura);
-
-  contexto.fillStyle = "#153b5b";
-  contexto.font = "bold 27px Arial, sans-serif";
-  contexto.fillText(resultado.nome, conteudoX, cursorY);
-  contexto.textAlign = "right";
-  contexto.fillText(
-    `${resultado.pontos}/9`,
-    x + LARGURA_CARTAO - 32,
-    cursorY,
-  );
-  contexto.textAlign = "left";
-  cursorY += 52;
-
+  const padding = 8;
+  const conteudoX = x + padding + 3;
+  const larguraTexto = LARGURA_CONTEUDO - padding * 2 - 3;
   const cores = coresClassificacao[resultado.classificacao.classe];
-  contexto.font = "bold 18px Arial, sans-serif";
-  const larguraEtiqueta = contexto.measureText(
-    resultado.classificacao.texto,
-  ).width;
-  contexto.fillStyle = cores.fundo;
-  contexto.fillRect(conteudoX, cursorY - 25, larguraEtiqueta + 28, 36);
-  contexto.fillStyle = cores.texto;
-  contexto.fillText(resultado.classificacao.texto, conteudoX + 14, cursorY);
-  cursorY += 50;
+  let cursorY = y + padding + 5;
 
-  contexto.fillStyle = "#526174";
-  contexto.font = "22px Arial, sans-serif";
-  cursorY = desenharTexto(
-    contexto,
-    resultado.recomendacao,
+  documento.setFillColor(248, 250, 252);
+  documento.setDrawColor(221, 230, 237);
+  documento.setLineWidth(0.3);
+  documento.roundedRect(x, y, LARGURA_CONTEUDO, cartao.altura, 2, 2, "FD");
+  documento.setFillColor(21, 158, 152);
+  documento.rect(x, y, 1.5, cartao.altura, "F");
+
+  documento.setTextColor(21, 59, 91);
+  documento.setFont("helvetica", "bold");
+  documento.setFontSize(12);
+  documento.text(resultado.nome, conteudoX, cursorY);
+  documento.text(
+    `${resultado.pontos}/9`,
+    x + LARGURA_CONTEUDO - padding,
+    cursorY,
+    { align: "right" },
+  );
+  cursorY += 12;
+
+  documento.setFontSize(8);
+  const larguraEtiqueta = documento.getTextWidth(
+    resultado.classificacao.texto,
+  );
+  documento.setFillColor(...cores.fundo);
+  documento.roundedRect(
+    conteudoX,
+    cursorY - 5.5,
+    larguraEtiqueta + 6,
+    7,
+    1,
+    1,
+    "F",
+  );
+  documento.setTextColor(...cores.texto);
+  documento.text(resultado.classificacao.texto, conteudoX + 3, cursorY - 1);
+  cursorY += 5;
+
+  documento.setTextColor(82, 97, 116);
+  documento.setFont("helvetica", "normal");
+  documento.setFontSize(10);
+  documento.text(cartao.recomendacaoLinhas, conteudoX, cursorY, {
+    lineHeightFactor: 1.3,
+  });
+  cursorY +=
+    cartao.recomendacaoLinhas.length * ESPACAMENTO_LINHA(10) + 4;
+
+  documento.setTextColor(21, 59, 91);
+  documento.setFont("helvetica", "bold");
+  documento.setFontSize(9.5);
+  documento.text(
+    resultado.classificacao.classe === "frequente"
+      ? "Para manter bons resultados"
+      : "Dicas para avançar",
     conteudoX,
     cursorY,
-    LARGURA_CONTEUDO,
   );
-  cursorY += 18;
+  cursorY += 5;
 
-  contexto.fillStyle = "#153b5b";
-  contexto.font = "bold 21px Arial, sans-serif";
-  contexto.fillText("Dicas para avançar", conteudoX, cursorY);
-  cursorY += 40;
-
-  contexto.fillStyle = "#34495e";
-  contexto.font = "21px Arial, sans-serif";
-  for (const dica of resultado.dicas) {
-    cursorY = desenharTexto(
-      contexto,
-      `• ${dica}`,
-      conteudoX,
-      cursorY,
-      LARGURA_CONTEUDO,
-    );
-    cursorY += 12;
+  documento.setTextColor(52, 73, 94);
+  documento.setFont("helvetica", "normal");
+  documento.setFontSize(9.5);
+  for (const linhas of cartao.dicasLinhas) {
+    documento.text(linhas, conteudoX, cursorY, {
+      maxWidth: larguraTexto,
+      lineHeightFactor: 1.3,
+    });
+    cursorY += linhas.length * ESPACAMENTO_LINHA(9.5) + 2.5;
   }
-
-  return y + altura;
-}
-
-function obterBlob(canvas: HTMLCanvasElement): Promise<Blob> {
-  return new Promise((resolve, reject) => {
-    canvas.toBlob(
-      (blob) => {
-        if (blob) {
-          resolve(blob);
-        } else {
-          reject(new Error("O navegador não conseguiu gerar a imagem JPG."));
-        }
-      },
-      "image/jpeg",
-      0.94,
-    );
-  });
 }
 
 export async function baixarManualAutoavaliacao(
   resultados: ResultadoManual[],
 ): Promise<void> {
-  const canvas = document.createElement("canvas");
-  const contexto = canvas.getContext("2d");
+  const { jsPDF } = await import("jspdf");
+  const documento = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
+  documento.setProperties({
+    title: "Resultado da Autoavaliação Digital",
+    subject: "Resumo e dicas personalizadas da autoavaliação",
+    creator: "Cartilha Digital",
+  });
 
-  if (!contexto) {
-    throw new Error("Não foi possível preparar a imagem do manual.");
-  }
-
-  let altura = 240;
-  for (const resultado of resultados) {
-    altura += alturaCartao(contexto, resultado) + 22;
-  }
-  altura += 44;
-
-  canvas.width = LARGURA * ESCALA;
-  canvas.height = altura * ESCALA;
-  contexto.scale(ESCALA, ESCALA);
-  contexto.fillStyle = "#ffffff";
-  contexto.fillRect(0, 0, LARGURA, altura);
-
-  contexto.fillStyle = "#153b5b";
-  contexto.font = "bold 38px Arial, sans-serif";
-  contexto.fillText("Resultado da Autoavaliação Digital", MARGEM, 80);
-
-  contexto.fillStyle = "#526174";
-  contexto.font = "24px Arial, sans-serif";
-  contexto.fillText("Resumo e orientações para sua empresa", MARGEM, 122);
-  contexto.font = "18px Arial, sans-serif";
-  contexto.fillText(
-    new Date().toLocaleDateString("pt-BR"),
-    MARGEM,
-    158,
+  const cartoes = resultados.map((resultado) =>
+    prepararCartao(documento, resultado),
   );
+  let cursorY = 50;
+  adicionarCabecalho(documento, true);
 
-  contexto.strokeStyle = "#dde6ed";
-  contexto.lineWidth = 2;
-  contexto.beginPath();
-  contexto.moveTo(MARGEM, 190);
-  contexto.lineTo(LARGURA - MARGEM, 190);
-  contexto.stroke();
+  for (const cartao of cartoes) {
+    if (cartao.altura > LIMITE_INFERIOR - 24) {
+      throw new Error("O conteúdo de uma ferramenta excede o espaço da página.");
+    }
 
-  let cursorY = 218;
-  for (const resultado of resultados) {
-    cursorY = desenharCartao(contexto, resultado, cursorY) + 22;
+    if (cursorY + cartao.altura > LIMITE_INFERIOR) {
+      documento.addPage();
+      adicionarCabecalho(documento, false);
+      cursorY = 26;
+    }
+
+    desenharCartao(documento, cartao, cursorY);
+    cursorY += cartao.altura + 5;
   }
 
-  const blob = await obterBlob(canvas);
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
+  const totalPaginas = documento.getNumberOfPages();
+  for (let pagina = 1; pagina <= totalPaginas; pagina += 1) {
+    documento.setPage(pagina);
+    documento.setFont("helvetica", "normal");
+    documento.setFontSize(8);
+    documento.setTextColor(120, 132, 145);
+    documento.text(
+      `Página ${pagina} de ${totalPaginas}`,
+      LARGURA_PAGINA - MARGEM,
+      ALTURA_PAGINA - 9,
+      { align: "right" },
+    );
+  }
+
   const data = new Date();
   const dataArquivo = [
     data.getFullYear(),
@@ -239,10 +232,5 @@ export async function baixarManualAutoavaliacao(
     String(data.getDate()).padStart(2, "0"),
   ].join("-");
 
-  link.href = url;
-  link.download = `autoavaliacao-${dataArquivo}.jpg`;
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
-  window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+  documento.save(`autoavaliacao-${dataArquivo}.pdf`);
 }
