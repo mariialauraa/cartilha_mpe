@@ -21,6 +21,7 @@ vi.mock("jspdf", () => ({
     roundedRect() {}
     rect() {}
     line() {}
+    circle() {}
     setPage() {}
 
     splitTextToSize(texto: string, largura: number): string[] {
@@ -84,7 +85,7 @@ describe("baixarManualAutoavaliacao", () => {
           classe: "frequente",
           descricao: "Uso frequente dos canais.",
         },
-        recomendacao: "Mantenha os canais atualizados.",
+        descricao: "Descrição personalizada para canais digitais.",
         dicas: ["Acompanhe os resultados das publicações."],
       },
     ]);
@@ -95,9 +96,11 @@ describe("baixarManualAutoavaliacao", () => {
     expect(estadoPdf.textos).toContain("Para manter bons resultados");
     expect(estadoPdf.textos).toContain("8/9");
     expect(estadoPdf.textos).toContain("Uso frequente");
-    expect(estadoPdf.textos).toContain("Mantenha os canais atualizados.");
     expect(estadoPdf.textos).toContain(
-      "- Acompanhe os resultados das publicações.",
+      "Descrição personalizada para canais digitais.",
+    );
+    expect(estadoPdf.textos).toContain(
+      "Acompanhe os resultados das publicações.",
     );
     expect(estadoPdf.nomeArquivo).toMatch(
       /^autoavaliacao-\d{4}-\d{2}-\d{2}\.pdf$/,
@@ -117,7 +120,7 @@ describe("baixarManualAutoavaliacao", () => {
             classe: "atencao" as const,
             descricao: "Uso inicial da ferramenta.",
           },
-          recomendacao: textoLongo,
+          descricao: textoLongo,
           dicas: [textoLongo, textoLongo, textoLongo],
         }),
       ),

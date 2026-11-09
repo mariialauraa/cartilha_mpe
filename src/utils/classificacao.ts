@@ -20,7 +20,7 @@ export function obterClassificacao(pontos: number): Classificacao {
       texto: "Uso moderado",
       classe: "melhoria",
       descricao:
-        "Sua empresa utiliza essa ferramenta, mas ainda pode ampliar seu uso.",
+        "Sua empresa já utiliza essa ferramenta, mas ainda pode aprimorar seu uso.",
     };
   }
 

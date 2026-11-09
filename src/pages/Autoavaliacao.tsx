@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { dicasAutoavaliacao } from "../data/dicasAutoavaliacao";
 import { baixarManualAutoavaliacao } from "../utils/baixarManualAutoavaliacao";
+import { descricoesAutoavaliacao } from "../utils/descricoesAutoavaliacao";
 import {
   obterClassificacao,
   type ClasseClassificacao,
@@ -18,6 +19,7 @@ type Pergunta = {
 
 type Ferramenta = {
   nome: string;
+  descricaoId: keyof typeof descricoesAutoavaliacao;
   secao: string;
   textoLink: string;
   perguntas: number[];
@@ -86,6 +88,7 @@ const alternativas = ["Não", "Raramente", "Frequentemente", "Sempre"];
 const ferramentas: Ferramenta[] = [
   {
     nome: "Presença Digital",
+    descricaoId: "presencaDigital",
     secao: "presenca-digital",
     textoLink: "Explorar presença digital",
     perguntas: [1, 2, 3],
@@ -95,6 +98,7 @@ const ferramentas: Ferramenta[] = [
   },
   {
     nome: "Comércio Eletrônico",
+    descricaoId: "comercioEletronico",
     secao: "comercio-eletronico",
     textoLink: "Explorar comércio eletrônico",
     perguntas: [4, 5, 6],
@@ -104,6 +108,7 @@ const ferramentas: Ferramenta[] = [
   },
   {
     nome: "Gestão Empresarial (ERP)",
+    descricaoId: "erp",
     secao: "erp",
     textoLink: "Explorar gestão empresarial",
     perguntas: [7, 8, 9],
@@ -246,7 +251,10 @@ export default function Autoavaliacao() {
           nome: resultado.nome,
           pontos: resultado.pontos,
           classificacao: resultado.classificacao,
-          recomendacao: resultado.recomendacao,
+          descricao:
+            descricoesAutoavaliacao[resultado.descricaoId][
+              resultado.classificacao.classe
+            ],
           dicas: resultado.dicas[resultado.classificacao.classe],
         })),
       );

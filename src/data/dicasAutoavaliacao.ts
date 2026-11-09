@@ -7,7 +7,7 @@ export const dicasAutoavaliacao: Record<
   presencaDigital: {
     atencao: [
       "Escolha um canal digital adequado ao seu negócio, como uma rede social ou um aplicativo de mensagens.",
-      "Crie ou atualize o perfil com informações essenciais: produtos ou serviços, formas de contato e horários.",
+      "Crie ou atualize o perfil com informações essenciais, como produtos ou serviços oferecidos, formas de contato e horário de atendimento.",
       "Comece a divulgar o que sua empresa oferece e responda às dúvidas dos clientes.",
     ],
     melhoria: [
@@ -24,7 +24,7 @@ export const dicasAutoavaliacao: Record<
   comercioEletronico: {
     atencao: [
       "Avalie um canal simples para apresentar produtos e receber pedidos pela internet.",
-      "Informe com clareza preços, formas de pagamento, entrega e prazos.",
+      "Informe com clareza os preços, as formas de pagamento, as opções de entrega e os prazos.",
       "Organize os pedidos recebidos para não perder informações nem deixar clientes sem retorno.",
     ],
     melhoria: [
@@ -45,12 +45,12 @@ export const dicasAutoavaliacao: Record<
       "Pesquise soluções que atendam às necessidades e às condições da empresa.",
     ],
     melhoria: [
-      "Avalie quais módulos do sistema são realmente úteis para o negócio.",
-      "Considere os custos de implantação e manutenção antes de adotar ou ampliar o uso de um ERP.",
+      "Identifique quais módulos do sistema são realmente úteis para o negócio.",
+      "Avalie os custos de implantação e manutenção antes de adotar um ERP ou ampliar sua utilização.",
       "Verifique se o sistema se integra às ferramentas que a empresa já utiliza e prepare a equipe para usá-lo.",
     ],
     frequente: [
-      "Mantenha os dados e os processos do sistema atualizados.",
+      "Mantenha as informações registradas no sistema atualizadas e revise periodicamente os processos de trabalho.",
       "Revise se os módulos utilizados continuam atendendo às necessidades da empresa.",
       "Capacite a equipe e use as informações integradas para acompanhar as operações e apoiar decisões.",
     ],

@@ -35,7 +35,7 @@ describe('obterClassificacao', () => {
       expect(resultado.texto).toBe('Uso moderado');
       expect(resultado.classe).toBe('melhoria');
       expect(resultado.descricao).toBe(
-        'Sua empresa utiliza essa ferramenta, mas ainda pode ampliar seu uso.'
+        'Sua empresa já utiliza essa ferramenta, mas ainda pode aprimorar seu uso.'
       );
     });
 
@@ -44,7 +44,7 @@ describe('obterClassificacao', () => {
       expect(resultado.texto).toBe('Uso moderado');
       expect(resultado.classe).toBe('melhoria');
       expect(resultado.descricao).toBe(
-        'Sua empresa utiliza essa ferramenta, mas ainda pode ampliar seu uso.'
+        'Sua empresa já utiliza essa ferramenta, mas ainda pode aprimorar seu uso.'
       );
     });
 

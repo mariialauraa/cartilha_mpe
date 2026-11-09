@@ -139,6 +139,8 @@ describe('Autoavaliacao - Fluxo Básico', () => {
           nome: 'Presença Digital',
           pontos: 0,
           classificacao: expect.objectContaining({ classe: 'atencao' }),
+          descricao:
+            'Sua empresa ainda utiliza pouco os canais digitais. Comece explorando ferramentas simples para divulgar seus produtos ou serviços e se comunicar com os clientes.',
           dicas: expect.arrayContaining([
             'Escolha um canal digital adequado ao seu negócio, como uma rede social ou um aplicativo de mensagens.',
           ]),
@@ -147,6 +149,8 @@ describe('Autoavaliacao - Fluxo Básico', () => {
           nome: 'Comércio Eletrônico',
           pontos: 0,
           classificacao: expect.objectContaining({ classe: 'atencao' }),
+          descricao:
+            'Sua empresa ainda utiliza pouco o comércio eletrônico. Considere começar com canais simples para apresentar produtos e receber pedidos pela internet.',
           dicas: expect.arrayContaining([
             'Avalie um canal simples para apresentar produtos e receber pedidos pela internet.',
           ]),
@@ -155,6 +159,8 @@ describe('Autoavaliacao - Fluxo Básico', () => {
           nome: 'Gestão Empresarial (ERP)',
           pontos: 0,
           classificacao: expect.objectContaining({ classe: 'atencao' }),
+          descricao:
+            'O uso de sistemas de gestão ainda é limitado na sua empresa. As orientações a seguir podem ajudar a identificar ferramentas adequadas às necessidades do negócio.',
           dicas: expect.arrayContaining([
             'Identifique quais atividades precisam de mais organização, como finanças, vendas ou estoque.',
           ]),
