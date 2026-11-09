@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { beforeEach, describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { BrowserRouter } from 'react-router-dom';
@@ -9,6 +9,11 @@ const renderWithRouter = (component: React.ReactElement) => {
 };
 
 describe('Autoavaliacao - Fluxo Básico', () => {
+  beforeEach(() => {
+    sessionStorage.clear();
+    localStorage.clear();
+  });
+
   it('deve completar a avaliação com 9 perguntas', async () => {
     renderWithRouter(<Autoavaliacao />);
 
@@ -93,5 +98,53 @@ describe('Autoavaliacao - Fluxo Básico', () => {
     expect(screen.getByText('Uso frequente')).toBeTruthy();
     expect(screen.getByText('Uso inicial')).toBeTruthy();
     expect(screen.getByText('Uso moderado')).toBeTruthy();
+  });
+
+  it('deve restaurar o resultado depois que a página for montada novamente', async () => {
+    const { unmount } = renderWithRouter(<Autoavaliacao />);
+
+    await userEvent.click(screen.getByRole('button', { name: /começar/i }));
+
+    for (let i = 0; i < 9; i++) {
+      await userEvent.click(screen.getAllByRole('radio')[3]);
+      await userEvent.click(
+        screen.getByRole('button', { name: /próxima|finalizar/i }),
+      );
+    }
+
+    unmount();
+    renderWithRouter(<Autoavaliacao />);
+
+    expect(screen.getByText('Você já realizou uma avaliação!')).toBeTruthy();
+    await userEvent.click(
+      screen.getByRole('button', { name: /ver último resultado/i }),
+    );
+
+    expect(screen.getByText('Avaliação concluída')).toBeTruthy();
+    expect(
+      screen
+        .getByRole('progressbar', { name: 'Pontuação de Presença Digital' })
+        .getAttribute('aria-valuenow'),
+    ).toBe('9');
+  });
+
+  it('deve iniciar uma nova avaliação sem apagar o resultado anterior', async () => {
+    renderWithRouter(<Autoavaliacao />);
+
+    await userEvent.click(screen.getByRole('button', { name: /começar/i }));
+
+    for (let i = 0; i < 9; i++) {
+      await userEvent.click(screen.getAllByRole('radio')[0]);
+      await userEvent.click(
+        screen.getByRole('button', { name: /próxima|finalizar/i }),
+      );
+    }
+
+    await userEvent.click(
+      screen.getByRole('button', { name: /refazer avaliação/i }),
+    );
+
+    expect(screen.getByText('Pergunta 1 de 9')).toBeTruthy();
+    expect(localStorage.getItem('autoavaliacao-respostas')).not.toBeNull();
   });
 });

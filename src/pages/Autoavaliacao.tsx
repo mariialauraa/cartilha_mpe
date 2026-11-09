@@ -19,6 +19,8 @@ type Ferramenta = {
   recomendacao: string;
 };
 
+type Respostas = Record<number, number>;
+
 const perguntas: Pergunta[] = [
   {
     id: 1,
@@ -102,20 +104,72 @@ const ferramentas: Ferramenta[] = [
   },
 ];
 
+const CHAVE_RESPOSTAS_SALVAS = "autoavaliacao-respostas";
+
+// Recupera e valida as respostas armazenadas no navegador.
+function obterRespostasSalvas(): Respostas | null {
+  try {
+    const valorSalvo = localStorage.getItem(CHAVE_RESPOSTAS_SALVAS);
+
+    if (!valorSalvo) return null;
+
+    const valor: unknown = JSON.parse(valorSalvo);
+
+    if (typeof valor !== "object" || valor === null || Array.isArray(valor)) {
+      return null;
+    }
+
+    const respostasSalvas = valor as Record<string, unknown>;
+    const respostasValidas: Respostas = {};
+
+    for (const pergunta of perguntas) {
+      const resposta = respostasSalvas[pergunta.id];
+
+      if (
+        typeof resposta !== "number" ||
+        !Number.isInteger(resposta) ||
+        resposta < 0 ||
+        resposta >= alternativas.length
+      ) {
+        return null;
+      }
+
+      respostasValidas[pergunta.id] = resposta;
+    }
+
+    return respostasValidas;
+  } catch {
+    return null;
+  }
+}
+
 export default function Autoavaliacao() {
+  const [respostasSalvas, setRespostasSalvas] = useState<Respostas | null>(
+    obterRespostasSalvas,
+  );
+
   const [etapa, setEtapa] = useState<Etapa>("inicio");
   const [perguntaAtual, setPerguntaAtual] = useState(0);
-  const [respostas, setRespostas] = useState<Record<number, number>>({});
+  const [respostas, setRespostas] = useState<Respostas>({});
 
   const pergunta = perguntas[perguntaAtual];
   const respostaSelecionada = respostas[pergunta.id];
 
   const progresso = ((perguntaAtual + 1) / perguntas.length) * 100;
 
+  // Inicia uma nova avaliação sem apagar o resultado anterior.
   const iniciarAvaliacao = () => {
     setPerguntaAtual(0);
     setRespostas({});
     setEtapa("questionario");
+  };
+
+  // Recupera a última avaliação concluída.
+  const visualizarResultadoSalvo = () => {
+    if (!respostasSalvas) return;
+
+    setRespostas({ ...respostasSalvas });
+    setEtapa("conclusao");
   };
 
   const selecionarResposta = (valor: number) => {
@@ -125,12 +179,22 @@ export default function Autoavaliacao() {
     }));
   };
 
+  // Avança e salva as respostas somente ao finalizar.
   const proximaPergunta = () => {
     if (respostaSelecionada === undefined) return;
 
     if (perguntaAtual < perguntas.length - 1) {
       setPerguntaAtual((anterior) => anterior + 1);
     } else {
+      try {
+        localStorage.setItem(CHAVE_RESPOSTAS_SALVAS, JSON.stringify(respostas));
+
+        setRespostasSalvas({ ...respostas });
+      } catch {
+        // A avaliação continua funcionando mesmo se
+        // o navegador não permitir o armazenamento.
+      }
+
       setEtapa("conclusao");
     }
   };
@@ -158,7 +222,7 @@ export default function Autoavaliacao() {
     };
   });
 
-  // Identifica as ferramentas que merecem mais atenção.
+  // Identifica as ferramentas que podem ser melhor aproveitadas.
   const oportunidades = resultados
     .filter((resultado) => resultado.pontos <= 6)
     .sort((a, b) => a.pontos - b.pontos);
@@ -214,13 +278,42 @@ export default function Autoavaliacao() {
                 </div>
               </div>
 
-              <button
-                type="button"
-                className="autoavaliacao-botao-primario"
-                onClick={iniciarAvaliacao}
-              >
-                Começar avaliação
-              </button>
+              {respostasSalvas ? (
+                <div className="autoavaliacao-resultado-salvo">
+                  <h3>Você já realizou uma avaliação!</h3>
+
+                  <p>
+                    Seu último resultado está disponível neste navegador. Você
+                    pode consultá-lo ou realizar uma nova avaliação.
+                  </p>
+
+                  <div className="autoavaliacao-resultado-acoes">
+                    <button
+                      type="button"
+                      className="autoavaliacao-botao-primario"
+                      onClick={visualizarResultadoSalvo}
+                    >
+                      Ver último resultado
+                    </button>
+
+                    <button
+                      type="button"
+                      className="autoavaliacao-botao-secundario"
+                      onClick={iniciarAvaliacao}
+                    >
+                      Fazer nova avaliação
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  className="autoavaliacao-botao-primario"
+                  onClick={iniciarAvaliacao}
+                >
+                  Começar avaliação
+                </button>
+              )}
             </div>
           )}
 
@@ -366,11 +459,13 @@ export default function Autoavaliacao() {
                         >
                           <h4>{resultado.nome}</h4>
                           <p>{resultado.recomendacao}</p>
+
                           <Link
                             to={`/ferramentas-digitais#${resultado.secao}`}
                             className="autoavaliacao-recomendacao-link"
                           >
-                            {resultado.textoLink} <span aria-hidden="true">→</span>
+                            {resultado.textoLink}
+                            <span aria-hidden="true"> →</span>
                           </Link>
                         </div>
                       ))}

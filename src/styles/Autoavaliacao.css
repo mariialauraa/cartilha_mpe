@@ -77,6 +77,35 @@
   max-width: 600px;
 }
 
+.autoavaliacao-resultado-salvo {
+  margin-top: 30px;
+  padding: 25px;
+  background-color: var(--background-light-blue, #eef5f7);
+  border: 1px solid var(--border, #dde6ed);
+  border-radius: 12px;
+  text-align: center;
+}
+
+.autoavaliacao-resultado-salvo h3 {
+  color: var(--primary, #153b5b);
+  font-size: 20px;
+  margin: 0 0 12px;
+}
+
+.autoavaliacao-resultado-salvo p {
+  color: var(--text-secondary, #526174);
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 22px;
+}
+
+.autoavaliacao-resultado-salvo .autoavaliacao-resultado-acoes {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
 .autoavaliacao-informacoes {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

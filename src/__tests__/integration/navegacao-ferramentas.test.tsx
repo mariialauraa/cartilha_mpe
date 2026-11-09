@@ -13,6 +13,7 @@ const scrollIntoViewOriginal = Object.getOwnPropertyDescriptor(
 const scrollIntoView = vi.fn();
 
 beforeEach(() => {
+  localStorage.clear();
   scrollIntoView.mockReset();
   Object.defineProperty(Element.prototype, 'scrollIntoView', {
     configurable: true,
