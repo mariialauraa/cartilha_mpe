@@ -35,27 +35,30 @@
 /* Exemplo prático */
 
 .exemplo-pratico {
-  background-color: var(--background-light-blue);
-  border-left: 4px solid var(--accent);
-  border-radius: 10px;
-  padding: 25px 30px;
+  background: linear-gradient(110deg, #eaf6f3, #f3f8f9);
+  border-left: 4px solid var(--secondary);
+  border-radius: 12px;
+  padding: 24px 28px;
   margin-top: 35px;
   max-width: 850px;
 }
 
-.exemplo-titulo {
+.exemplo-titulo,
+.desafios-fechamento-titulo {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 12px;
 }
 
-.exemplo-icone {
-  color: var(--accent);
+.exemplo-icone,
+.desafios-fechamento-titulo svg {
+  color: var(--secondary-hover);
   flex-shrink: 0;
 }
 
-.exemplo-titulo h3 {
+.exemplo-titulo h3,
+.desafios-fechamento-titulo h3 {
   color: var(--primary);
   font-size: 18px;
   margin: 0;
@@ -507,9 +510,19 @@
   outline-offset: -4px;
 }
 
-.exemplo-pratico {
-  background: linear-gradient(110deg, #f0f8f7, #f7fafb);
+.desafios-fechamento {
+  margin-top: 30px;
+  background: linear-gradient(110deg, #eaf6f3, #f3f8f9);
+  border-left: 4px solid var(--secondary);
   border-radius: 12px;
+  padding: 24px 28px;
+}
+
+.desafios-fechamento p {
+  color: var(--text-primary);
+  font-size: 16px;
+  line-height: 1.8;
+  margin: 0;
 }
 
 .beneficio-card:not(.desafio-flip),
@@ -556,6 +569,10 @@
   .transformacao-conceito,
   .transformacao-beneficios {
     padding-top: 28px;
+  }
+
+  .desafios-fechamento {
+    padding: 20px;
   }
 }
 

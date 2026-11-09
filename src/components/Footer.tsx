@@ -7,8 +7,7 @@ function Footer() {
         <div className="footer-info">
           <h3>Guia Digital MPE</h3>
           <p>
-            Cartilha digital sobre transformação digital para micro e pequenas
-            empresas.
+            Cartilha sobre Transformação Digital para Micro e Pequenas Empresas.
           </p>
         </div>
 
@@ -20,8 +19,8 @@ function Footer() {
 
       <div className="footer-bottom">
         <p>
-          Desenvolvido como parte do Trabalho de Conclusão de Curso em Sistemas
-          de Informação.
+          © 2026 Maria Laura Roriz. Desenvolvido como parte do Trabalho de
+          Conclusão de Curso de Bacharelado em Sistemas de Informação (BSI).
         </p>
       </div>
     </footer>
