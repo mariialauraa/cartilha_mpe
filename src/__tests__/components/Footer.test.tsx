@@ -9,7 +9,7 @@ describe('Footer', () => {
     expect(screen.getByText('Guia Digital MPE')).toBeTruthy();
     expect(
       screen.getByText(
-        'Cartilha digital sobre transformação digital para micro e pequenas empresas.'
+        'Cartilha sobre Transformação Digital para Micro e Pequenas Empresas.'
       )
     ).toBeTruthy();
   });
