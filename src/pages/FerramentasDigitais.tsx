@@ -13,7 +13,8 @@ import {
   Contact,
 } from "lucide-react";
 
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 import "../styles/FerramentasDigitais.css";
 
 const canaisDigitais = [
@@ -58,9 +59,29 @@ const fasesPresencaDigital = [
 ];
 
 function FerramentasDigitais() {
+  const { hash, key } = useLocation();
+  const conteudoRef = useRef<HTMLDivElement>(null);
   const [modalAberto, setModalAberto] = useState<
     "instagram" | "whatsapp" | "erp" | null
   >(null);
+
+  useLayoutEffect(() => {
+    const secoes = conteudoRef.current?.querySelectorAll<HTMLDetailsElement>(
+      "details[id]",
+    );
+    const destino = Array.from(secoes ?? []).find(
+      (secao) => `#${secao.id}` === hash,
+    );
+
+    if (destino) {
+      secoes?.forEach((secao) => {
+        secao.open = false;
+      });
+      destino.open = true;
+      destino.scrollIntoView({ behavior: "instant", block: "start" });
+      destino.querySelector("summary")?.focus({ preventScroll: true });
+    }
+  }, [hash, key]);
 
   useEffect(() => {
     if (!modalAberto) return;
@@ -117,10 +138,11 @@ function FerramentasDigitais() {
         </div>
       </section>
 
-      <div className="container ferramentas-conteudo">
+      <div className="container ferramentas-conteudo" ref={conteudoRef}>
         {/* PRESENÇA DIGITAL */}
         <section className="ferramentas-secao">
           <details
+            id="presenca-digital"
             name="ferramentas-digitais"
             className="ferramentas-expansivel"
             open
@@ -228,6 +250,7 @@ function FerramentasDigitais() {
         {/* COMÉRCIO ELETRÔNICO */}
         <section className="ferramentas-secao">
           <details
+            id="comercio-eletronico"
             name="ferramentas-digitais"
             className="ferramentas-expansivel"
           >
@@ -402,6 +425,7 @@ function FerramentasDigitais() {
         {/* SISTEMAS ERP */}
         <section className="ferramentas-secao">
           <details
+            id="erp"
             name="ferramentas-digitais"
             className="ferramentas-expansivel"
           >

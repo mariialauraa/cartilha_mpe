@@ -13,6 +13,8 @@ type Pergunta = {
 
 type Ferramenta = {
   nome: string;
+  secao: string;
+  textoLink: string;
   perguntas: number[];
   recomendacao: string;
 };
@@ -76,18 +78,24 @@ const alternativas = ["Não", "Raramente", "Frequentemente", "Sempre"];
 const ferramentas: Ferramenta[] = [
   {
     nome: "Presença Digital",
+    secao: "presenca-digital",
+    textoLink: "Explorar presença digital",
     perguntas: [1, 2, 3],
     recomendacao:
       "Explore o uso das redes sociais e de outros canais digitais para divulgar seu negócio, conversar com os clientes e acompanhar os resultados.",
   },
   {
     nome: "Comércio Eletrônico",
+    secao: "comercio-eletronico",
+    textoLink: "Explorar comércio eletrônico",
     perguntas: [4, 5, 6],
     recomendacao:
       "Conheça as possibilidades de receber pedidos e realizar vendas pela internet. Avalie quais canais fazem sentido para o seu negócio.",
   },
   {
     nome: "Gestão Empresarial (ERP)",
+    secao: "erp",
+    textoLink: "Explorar gestão empresarial",
     perguntas: [7, 8, 9],
     recomendacao:
       "Conheça ferramentas que podem ajudar a organizar as finanças, as atividades e as informações da sua empresa em um só lugar.",
@@ -358,6 +366,12 @@ export default function Autoavaliacao() {
                         >
                           <h4>{resultado.nome}</h4>
                           <p>{resultado.recomendacao}</p>
+                          <Link
+                            to={`/ferramentas-digitais#${resultado.secao}`}
+                            className="autoavaliacao-recomendacao-link"
+                          >
+                            {resultado.textoLink} <span aria-hidden="true">→</span>
+                          </Link>
                         </div>
                       ))}
                     </div>
@@ -380,9 +394,9 @@ export default function Autoavaliacao() {
               <div className="autoavaliacao-resultado-acoes">
                 <Link
                   to="/ferramentas-digitais"
-                  className="autoavaliacao-botao-primario"
+                  className="autoavaliacao-botao-secundario"
                 >
-                  Conhecer as ferramentas
+                  Ver todas as ferramentas
                 </Link>
 
                 <button

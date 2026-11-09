@@ -475,6 +475,26 @@
   margin: 0;
 }
 
+.autoavaliacao-recomendacao-link {
+  display: inline-block;
+  margin-top: 12px;
+  color: var(--primary, #153b5b);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.autoavaliacao-recomendacao-link:hover {
+  color: var(--secondary-hover, #117b76);
+}
+
+.autoavaliacao-recomendacao-link:focus-visible {
+  outline: 2px solid var(--primary, #153b5b);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
 /* Aviso e ações */
 
 .autoavaliacao-aviso {
