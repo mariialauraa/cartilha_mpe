@@ -18,10 +18,7 @@ function Home() {
             </p>
 
             <div className="hero-actions">
-              <a href="#conteudos" className="btn-primary">
-                Explorar a cartilha →
-              </a>
-              <Link to="/autoavaliacao" className="btn-secondary">
+              <Link to="/autoavaliacao" className="btn-primary">
                 Fazer autoavaliação
               </Link>
             </div>
@@ -44,8 +41,6 @@ function Home() {
 
       <section className="topics" id="conteudos">
         <div className="container">
-          <span className="section-tag">Explore nossa cartilha</span>
-
           <h2>Por onde começar?</h2>
 
           <p className="section-description">

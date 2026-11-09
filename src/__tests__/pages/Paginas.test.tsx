@@ -18,6 +18,15 @@ describe('Páginas', () => {
         name: 'Transformação digital ao alcance do seu negócio.',
       })
     ).toBeTruthy();
+
+    const autoavaliacao = screen.getByRole('link', {
+      name: 'Fazer autoavaliação',
+    });
+    expect(autoavaliacao.getAttribute('href')).toBe('/autoavaliacao');
+    expect(autoavaliacao.classList.contains('btn-primary')).toBe(true);
+    expect(
+      screen.queryByRole('link', { name: /Explorar a cartilha/ })
+    ).toBeNull();
   });
 
   it('deve exibir o título da página de transformação digital', () => {

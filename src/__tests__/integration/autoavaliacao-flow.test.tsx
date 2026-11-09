@@ -98,6 +98,17 @@ describe('Autoavaliacao - Fluxo Básico', () => {
     expect(screen.getByText('Uso frequente')).toBeTruthy();
     expect(screen.getByText('Uso inicial')).toBeTruthy();
     expect(screen.getByText('Uso moderado')).toBeTruthy();
+    expect(screen.getByText('Oportunidades de melhoria')).toBeTruthy();
+    expect(
+      screen.getByText(
+        'Conheça as possibilidades de receber pedidos e realizar vendas pela internet. Avalie quais canais fazem sentido para o seu negócio.'
+      )
+    ).toBeTruthy();
+    expect(
+      screen.queryByText(
+        'Avalie um canal simples para apresentar produtos e receber pedidos pela internet.'
+      )
+    ).toBeNull();
   });
 
   it('deve restaurar o resultado depois que a página for montada novamente', async () => {

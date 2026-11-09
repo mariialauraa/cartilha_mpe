@@ -1,6 +1,8 @@
+export type ClasseClassificacao = "atencao" | "melhoria" | "frequente";
+
 type Classificacao = {
   texto: string;
-  classe: string;
+  classe: ClasseClassificacao;
   descricao: string;
 };
 

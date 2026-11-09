@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { obterClassificacao } from "../utils/classificacao";
+import { dicasAutoavaliacao } from "../data/dicasAutoavaliacao";
+import {
+  obterClassificacao,
+  type ClasseClassificacao,
+} from "../utils/classificacao";
 import "../styles/Autoavaliacao.css";
 
 type Etapa = "inicio" | "questionario" | "conclusao";
@@ -17,6 +21,7 @@ type Ferramenta = {
   textoLink: string;
   perguntas: number[];
   recomendacao: string;
+  dicas: Record<ClasseClassificacao, string[]>;
 };
 
 type Respostas = Record<number, number>;
@@ -85,6 +90,7 @@ const ferramentas: Ferramenta[] = [
     perguntas: [1, 2, 3],
     recomendacao:
       "Explore o uso das redes sociais e de outros canais digitais para divulgar seu negócio, conversar com os clientes e acompanhar os resultados.",
+    dicas: dicasAutoavaliacao.presencaDigital,
   },
   {
     nome: "Comércio Eletrônico",
@@ -93,6 +99,7 @@ const ferramentas: Ferramenta[] = [
     perguntas: [4, 5, 6],
     recomendacao:
       "Conheça as possibilidades de receber pedidos e realizar vendas pela internet. Avalie quais canais fazem sentido para o seu negócio.",
+    dicas: dicasAutoavaliacao.comercioEletronico,
   },
   {
     nome: "Gestão Empresarial (ERP)",
@@ -101,6 +108,7 @@ const ferramentas: Ferramenta[] = [
     perguntas: [7, 8, 9],
     recomendacao:
       "Conheça ferramentas que podem ajudar a organizar as finanças, as atividades e as informações da sua empresa em um só lugar.",
+    dicas: dicasAutoavaliacao.erp,
   },
 ];
 
