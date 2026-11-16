@@ -50,34 +50,36 @@ const perguntas: Pergunta[] = [
   {
     id: 4,
     categoria: "Comércio Eletrônico",
-    texto: "Sua empresa realiza vendas ou recebe pedidos pela internet?",
+    texto:
+      "Sua empresa vende produtos ou recebe solicitações de serviços pela internet?",
   },
   {
     id: 5,
     categoria: "Comércio Eletrônico",
     texto:
-      "Sua empresa utiliza ferramentas digitais para organizar os pedidos dos clientes?",
+      "Sua empresa utiliza algum sistema ou aplicativo para organizar pedidos ou agendamentos recebidos pela internet?",
   },
   {
     id: 6,
     categoria: "Comércio Eletrônico",
-    texto: "Sua empresa acompanha as vendas realizadas pela internet?",
+    texto:
+      "Sua empresa acompanha os resultados das vendas ou dos serviços solicitados pela internet?",
   },
   {
     id: 7,
-    categoria: "Gestão Empresarial (ERP)",
+    categoria: "Gestão Empresarial",
     texto:
       "Sua empresa utiliza ferramentas digitais para controlar suas finanças?",
   },
   {
     id: 8,
-    categoria: "Gestão Empresarial (ERP)",
+    categoria: "Gestão Empresarial",
     texto:
-      "Sua empresa utiliza ferramentas digitais para organizar suas atividades?",
+      "Sua empresa utiliza algum sistema ou aplicativo para organizar suas atividades diárias?",
   },
   {
     id: 9,
-    categoria: "Gestão Empresarial (ERP)",
+    categoria: "Gestão Empresarial",
     texto:
       "Sua empresa utiliza algum sistema que reúne informações do negócio em um só lugar?",
   },
@@ -107,7 +109,7 @@ const ferramentas: Ferramenta[] = [
     dicas: dicasAutoavaliacao.comercioEletronico,
   },
   {
-    nome: "Gestão Empresarial (ERP)",
+    nome: "Gestão Empresarial",
     descricaoId: "erp",
     secao: "erp",
     textoLink: "Explorar gestão empresarial",

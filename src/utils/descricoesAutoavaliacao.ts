@@ -17,23 +17,23 @@ export const descricoesAutoavaliacao: Record<
 
   comercioEletronico: {
     atencao:
-      "Sua empresa ainda utiliza pouco o comércio eletrônico. Considere começar com canais simples para apresentar produtos e receber pedidos pela internet.",
+      "Sua empresa ainda utiliza pouco os recursos de comércio eletrônico. Considere começar com canais simples para vender produtos ou receber solicitações de serviços pela internet.",
 
     melhoria:
-      "Sua empresa já utiliza alguns recursos de comércio eletrônico. Procure melhorar a organização das vendas e dos pedidos para aproveitar melhor esses canais.",
+      "Sua empresa já utiliza alguns recursos de comércio eletrônico. Procure melhorar a organização das vendas e das solicitações de serviços para aproveitar melhor esses canais.",
 
     frequente:
-      "O comércio eletrônico já faz parte das atividades da sua empresa. Continue aprimorando a organização das vendas e dos pedidos para tornar esses processos mais eficientes.",
+      "Sua empresa já utiliza recursos de comércio eletrônico com frequência. Continue aprimorando a organização das vendas e dos serviços solicitados pela internet para tornar esses processos mais eficientes.",
   },
 
   erp: {
     atencao:
-      "O uso de sistemas de gestão ainda é limitado na sua empresa. As orientações a seguir podem ajudar a identificar ferramentas adequadas às necessidades do negócio.",
+      "Sua empresa ainda utiliza pouco as ferramentas digitais de gestão. As orientações a seguir podem ajudar a identificar recursos adequados às necessidades do negócio.",
 
     melhoria:
       "Sua empresa já utiliza alguns recursos de gestão empresarial. Avalie como aproveitar melhor essas ferramentas para integrar informações e organizar os processos.",
 
     frequente:
-      "Sua empresa já utiliza sistemas de gestão com frequência. Continue aprimorando o uso dessas ferramentas para organizar os processos e apoiar as decisões do negócio.",
+      "Sua empresa já utiliza ferramentas digitais de gestão com frequência. Continue aprimorando o uso desses recursos para organizar os processos e apoiar as decisões do negócio.",
   },
 };

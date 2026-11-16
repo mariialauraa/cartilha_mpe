@@ -1,5 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import { dicasAutoavaliacao } from "../../data/dicasAutoavaliacao";
 import { baixarManualAutoavaliacao } from "../../utils/baixarManualAutoavaliacao";
+import { descricoesAutoavaliacao } from "../../utils/descricoesAutoavaliacao";
 
 const { estadoPdf } = vi.hoisted(() => ({
   estadoPdf: {
@@ -105,6 +107,42 @@ describe("baixarManualAutoavaliacao", () => {
     expect(estadoPdf.nomeArquivo).toMatch(
       /^autoavaliacao-\d{4}-\d{2}-\d{2}\.pdf$/,
     );
+  });
+
+  it("mantém as três ferramentas e suas orientações em uma página", async () => {
+    const ferramentas = [
+      {
+        nome: "Presença Digital",
+        id: "presencaDigital",
+      },
+      {
+        nome: "Comércio Eletrônico",
+        id: "comercioEletronico",
+      },
+      {
+        nome: "Gestão Empresarial (ERP)",
+        id: "erp",
+      },
+    ] as const;
+
+    await baixarManualAutoavaliacao(
+      ferramentas.map(({ nome, id }) => ({
+        nome,
+        pontos: 3,
+        classificacao: {
+          texto: "Uso inicial",
+          classe: "atencao" as const,
+          descricao: "Sua empresa ainda utiliza pouco essa ferramenta digital.",
+        },
+        descricao: descricoesAutoavaliacao[id].atencao,
+        dicas: dicasAutoavaliacao[id].atencao,
+      })),
+    );
+
+    expect(estadoPdf.paginas).toBe(1);
+    expect(estadoPdf.textos).toContain("Presença Digital");
+    expect(estadoPdf.textos).toContain("Comércio Eletrônico");
+    expect(estadoPdf.textos).toContain("Gestão Empresarial (ERP)");
   });
 
   it("cria páginas adicionais quando o conteúdo não cabe em uma página", async () => {

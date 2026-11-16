@@ -23,36 +23,36 @@ export const dicasAutoavaliacao: Record<
   },
   comercioEletronico: {
     atencao: [
-      "Avalie um canal simples para apresentar produtos e receber pedidos pela internet.",
-      "Informe com clareza os preços, as formas de pagamento, as opções de entrega e os prazos.",
-      "Organize os pedidos recebidos para não perder informações nem deixar clientes sem retorno.",
+      "Avalie um canal simples para vender produtos ou receber solicitações de serviços pela internet.",
+      "Informe com clareza os preços, as formas de pagamento e as condições de entrega ou prestação dos serviços.",
+      "Organize os pedidos e agendamentos recebidos para não perder informações nem deixar clientes sem retorno.",
     ],
     melhoria: [
-      "Mantenha o estoque atualizado nos canais de venda para evitar oferecer produtos indisponíveis.",
-      "Organize a preparação e o envio dos pedidos, considerando custos e prazos.",
-      "Use canais de divulgação para levar clientes até onde seus produtos são vendidos.",
+      "Mantenha atualizadas as informações sobre produtos, serviços, preços e disponibilidade.",
+      "Organize os pedidos ou agendamentos, considerando os prazos e as necessidades dos clientes.",
+      "Use canais de divulgação para facilitar o acesso dos clientes aos seus produtos ou serviços.",
     ],
     frequente: [
-      "Revise periodicamente o estoque, os prazos e as informações dos produtos.",
-      "Verifique se a plataforma oferece recursos adequados para proteger os dados dos clientes.",
-      "Acompanhe as vendas e use os resultados para identificar oportunidades de melhoria.",
+      "Revise periodicamente os preços, os prazos e as informações dos produtos ou serviços oferecidos.",
+      "Verifique se os canais utilizados oferecem recursos adequados para proteger os dados dos clientes.",
+      "Acompanhe os resultados das vendas ou solicitações de serviços para identificar oportunidades de melhoria.",
     ],
   },
   erp: {
     atencao: [
-      "Identifique quais atividades precisam de mais organização, como finanças, vendas ou estoque.",
-      "Comece registrando essas informações de forma consistente, mesmo antes de escolher um sistema.",
-      "Pesquise soluções que atendam às necessidades e às condições da empresa.",
+      "Identifique quais atividades precisam de mais organização, como finanças, atendimentos ou controle de estoque.",
+      "Conheça os módulos de um sistema de gestão e avalie quais podem ajudar nas atividades da empresa.",
+      "Pesquise sistemas de gestão que atendam às necessidades e às condições do seu negócio.",
     ],
     melhoria: [
-      "Identifique quais módulos do sistema são realmente úteis para o negócio.",
-      "Avalie os custos de implantação e manutenção antes de adotar um ERP ou ampliar sua utilização.",
-      "Verifique se o sistema se integra às ferramentas que a empresa já utiliza e prepare a equipe para usá-lo.",
+      "Avalie quais módulos de um sistema de gestão podem complementar as ferramentas que sua empresa já utiliza.",
+      "Verifique se o sistema permite integrar informações de diferentes áreas do negócio.",
+      "Avalie os custos e os benefícios antes de ampliar a utilização do sistema ou adotar novos módulos.",
     ],
     frequente: [
       "Mantenha as informações registradas no sistema atualizadas e revise periodicamente os processos de trabalho.",
-      "Revise se os módulos utilizados continuam atendendo às necessidades da empresa.",
-      "Capacite a equipe e use as informações integradas para acompanhar as operações e apoiar decisões.",
+      "Avalie se os sistemas e módulos utilizados continuam atendendo às necessidades da empresa.",
+      "Capacite a equipe e utilize as informações integradas para acompanhar as atividades e apoiar decisões.",
     ],
   },
 };

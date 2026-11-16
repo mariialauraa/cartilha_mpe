@@ -25,10 +25,12 @@ const ALTURA_PAGINA = 297;
 const MARGEM = 17;
 
 const LARGURA_CONTEUDO = LARGURA_PAGINA - MARGEM * 2;
-const LIMITE_INFERIOR = ALTURA_PAGINA - 18;
+const LIMITE_INFERIOR = ALTURA_PAGINA - 15;
 
 const FONTE_TEXTO = 9.5;
 const FATOR_LINHA = 1.3;
+const ESPACO_ENTRE_CARTOES = 4;
+const INICIO_CARTOES = 46;
 
 const ESPACAMENTO_LINHA = (tamanhoFonte: number) =>
   (tamanhoFonte * FATOR_LINHA * 25.4) / 72;
@@ -83,7 +85,7 @@ function prepararCartao(
   );
 
   // Espaços fixos até o início das dicas + conteúdo variável.
-  const altura = 44 + alturaDescricao + alturaDicas;
+  const altura = 38 + alturaDescricao + alturaDicas;
 
   return {
     resultado,
@@ -214,7 +216,7 @@ function desenharCartao(
   });
 
   cursorY +=
-    cartao.descricaoLinhas.length * ESPACAMENTO_LINHA(FONTE_TEXTO) + 4;
+    cartao.descricaoLinhas.length * ESPACAMENTO_LINHA(FONTE_TEXTO) + 3;
 
   // Título das orientações
   documento.setTextColor(21, 59, 91);
@@ -228,7 +230,7 @@ function desenharCartao(
 
   documento.text(tituloDicas, conteudoX, cursorY);
 
-  cursorY += 8;
+  cursorY += 6;
 
   // Recomendações práticas
   documento.setFont("helvetica", "normal");
@@ -272,7 +274,7 @@ export async function baixarManualAutoavaliacao(
 
   adicionarCabecalho(documento, true);
 
-  let cursorY = 49;
+  let cursorY = INICIO_CARTOES;
 
   for (const cartao of cartoes) {
     // Verifica se o card cabe em uma página.
@@ -292,7 +294,7 @@ export async function baixarManualAutoavaliacao(
 
     desenharCartao(documento, cartao, cursorY);
 
-    cursorY += cartao.altura + 5;
+    cursorY += cartao.altura + ESPACO_ENTRE_CARTOES;
   }
 
   // Numeração das páginas
