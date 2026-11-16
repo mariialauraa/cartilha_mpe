@@ -66,7 +66,7 @@ describe('Autoavaliacao - Fluxo Básico', () => {
     expect(screen.queryAllByText('Presença Digital').length).toBeGreaterThan(0);
     expect(screen.queryAllByText('Comércio Eletrônico').length).toBeGreaterThan(0);
     expect(
-      screen.queryAllByText('Gestão Empresarial (ERP)').length
+      screen.queryAllByText('Gestão Empresarial').length
     ).toBeGreaterThan(0);
   });
 
@@ -97,7 +97,7 @@ describe('Autoavaliacao - Fluxo Básico', () => {
     expect(
       screen
         .getByRole('progressbar', {
-          name: 'Pontuação de Gestão Empresarial (ERP)',
+          name: 'Pontuação de Gestão Empresarial',
         })
         .getAttribute('aria-valuenow')
     ).toBe('6');
@@ -150,19 +150,19 @@ describe('Autoavaliacao - Fluxo Básico', () => {
           pontos: 0,
           classificacao: expect.objectContaining({ classe: 'atencao' }),
           descricao:
-            'Sua empresa ainda utiliza pouco o comércio eletrônico. Considere começar com canais simples para apresentar produtos e receber pedidos pela internet.',
+            'Sua empresa ainda utiliza pouco os recursos de comércio eletrônico. Considere começar com canais simples para vender produtos ou receber solicitações de serviços pela internet.',
           dicas: expect.arrayContaining([
-            'Avalie um canal simples para apresentar produtos e receber pedidos pela internet.',
+            'Avalie um canal simples para vender produtos ou receber solicitações de serviços pela internet.',
           ]),
         }),
         expect.objectContaining({
-          nome: 'Gestão Empresarial (ERP)',
+          nome: 'Gestão Empresarial',
           pontos: 0,
           classificacao: expect.objectContaining({ classe: 'atencao' }),
           descricao:
-            'O uso de sistemas de gestão ainda é limitado na sua empresa. As orientações a seguir podem ajudar a identificar ferramentas adequadas às necessidades do negócio.',
+            'Sua empresa ainda utiliza pouco as ferramentas digitais de gestão. As orientações a seguir podem ajudar a identificar recursos adequados às necessidades do negócio.',
           dicas: expect.arrayContaining([
-            'Identifique quais atividades precisam de mais organização, como finanças, vendas ou estoque.',
+            'Identifique quais atividades precisam de mais organização, como finanças, atendimentos ou controle de estoque.',
           ]),
         }),
       ]),

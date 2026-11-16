@@ -198,25 +198,24 @@ function desenharCartao(
 
   documento.setFillColor(...cores.fundo);
 
-  documento.roundedRect(conteudoX, y + 15, larguraEtiqueta, 7, 2, 2, "F");
+  documento.roundedRect(conteudoX, y + 13.5, larguraEtiqueta, 7, 2, 2, "F");
 
   documento.setTextColor(...cores.texto);
 
-  documento.text(resultado.classificacao.texto, conteudoX + 4, y + 19.6);
+  documento.text(resultado.classificacao.texto, conteudoX + 4, y + 18.1);
 
   // Descrição personalizada
   documento.setTextColor(82, 97, 116);
   documento.setFont("helvetica", "normal");
   documento.setFontSize(FONTE_TEXTO);
 
-  let cursorY = y + 28;
+  let cursorY = y + 25;
 
   documento.text(cartao.descricaoLinhas, conteudoX, cursorY, {
     lineHeightFactor: FATOR_LINHA,
   });
 
-  cursorY +=
-    cartao.descricaoLinhas.length * ESPACAMENTO_LINHA(FONTE_TEXTO) + 3;
+  cursorY += cartao.descricaoLinhas.length * ESPACAMENTO_LINHA(FONTE_TEXTO) + 2;
 
   // Título das orientações
   documento.setTextColor(21, 59, 91);
@@ -230,7 +229,7 @@ function desenharCartao(
 
   documento.text(tituloDicas, conteudoX, cursorY);
 
-  cursorY += 6;
+  cursorY += 7;
 
   // Recomendações práticas
   documento.setFont("helvetica", "normal");

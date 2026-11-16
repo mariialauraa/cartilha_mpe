@@ -27,7 +27,7 @@ vi.mock("jspdf", () => ({
     setPage() {}
 
     splitTextToSize(texto: string, largura: number): string[] {
-      const limite = Math.max(1, Math.floor(largura / 1.8));
+      const limite = Math.max(1, Math.floor(largura / 1.5));
       const palavras = texto.split(/\s+/);
       const linhas: string[] = [];
       let linha = "";
