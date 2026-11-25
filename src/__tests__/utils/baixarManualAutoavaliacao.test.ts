@@ -109,7 +109,7 @@ describe("baixarManualAutoavaliacao", () => {
     );
   });
 
-  it("mantém as três ferramentas e suas orientações em uma página", async () => {
+  it("mantém as três ferramentas e suas orientações quando ocupa mais de uma página", async () => {
     const ferramentas = [
       {
         nome: "Presença Digital",
@@ -139,10 +139,14 @@ describe("baixarManualAutoavaliacao", () => {
       })),
     );
 
-    expect(estadoPdf.paginas).toBe(1);
+    expect(estadoPdf.paginas).toBeGreaterThan(1);
     expect(estadoPdf.textos).toContain("Presença Digital");
     expect(estadoPdf.textos).toContain("Comércio Eletrônico");
     expect(estadoPdf.textos).toContain("Gestão Empresarial (ERP)");
+    expect(estadoPdf.textos).toContain(`Página 1 de ${estadoPdf.paginas}`);
+    expect(estadoPdf.textos).toContain(
+      `Página ${estadoPdf.paginas} de ${estadoPdf.paginas}`,
+    );
   });
 
   it("cria páginas adicionais quando o conteúdo não cabe em uma página", async () => {

@@ -26,7 +26,7 @@
   <rect width="1200" height="720" fill="#ffffff"/>
   <text class="title" x="600" y="46" text-anchor="middle">Diagrama de Casos de Uso — Guia Digital MPE</text>
 
-  <rect class="boundary" x="255" y="95" width="900" height="555" rx="4"/>
+  <rect class="boundary" x="255" y="95" width="900" height="585" rx="4"/>
   <text class="boundary-title" x="705" y="130" text-anchor="middle">Guia Digital MPE</text>
 
   <g class="association">
@@ -35,6 +35,7 @@
     <path d="M165 360 L575 370"/>
     <path d="M165 360 L575 465"/>
     <path d="M165 360 L575 560"/>
+    <path d="M165 360 L575 625"/>
   </g>
   <path class="include" d="M790 465 L790 560"/>
   <text class="relation-label" x="805" y="520">«include»</text>
@@ -69,6 +70,9 @@
       <tspan x="690" dy="0">Visualizar resultado</tspan>
       <tspan x="690" dy="21">da autoavaliação</tspan>
     </text>
+
+    <ellipse class="usecase" cx="690" cy="625" rx="215" ry="30"/>
+    <text class="case-label" x="690" y="631">Baixar resultado em PDF</text>
   </g>
 
   <rect class="note" x="885" y="430" width="235" height="105" rx="6"/>

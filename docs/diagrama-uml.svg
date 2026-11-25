@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1480" height="1000" viewBox="0 0 1480 1000" role="img" aria-labelledby="title description">
+<svg xmlns="http://www.w3.org/2000/svg" width="1480" height="1050" viewBox="0 0 1480 1050" role="img" aria-labelledby="title description">
   <title id="title">Diagrama UML — Guia Digital MPE</title>
-  <desc id="description">Estrutura real da aplicação React, rotas, autoavaliação, tipos usados, classificação dos resultados e armazenamento local das respostas.</desc>
+  <desc id="description">Estrutura real da aplicação React, rotas, autoavaliação, tipos usados, classificação dos resultados, armazenamento local das respostas e geração de PDF.</desc>
   <defs>
     <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
       <path d="M0,0 L10,5 L0,10 z" fill="#52708b"/>
@@ -25,9 +25,9 @@
     </style>
   </defs>
 
-  <rect width="1480" height="1000" fill="#ffffff"/>
+  <rect width="1480" height="1050" fill="#ffffff"/>
   <text class="title" x="740" y="46" text-anchor="middle">Diagrama UML — Guia Digital MPE</text>
-  <text class="subtitle" x="740" y="72" text-anchor="middle">Componentes, rotas, autoavaliação e persistência de respostas</text>
+  <text class="subtitle" x="740" y="72" text-anchor="middle">Componentes, rotas, autoavaliação, persistência de respostas e geração de PDF</text>
 
   <rect class="package" x="35" y="100" width="1410" height="330" rx="10"/>
   <rect class="package-title-bg" x="48" y="88" width="250" height="34" rx="10"/>
@@ -69,9 +69,9 @@
   <text class="relation" x="750" y="270">define as rotas</text>
   <text class="relation" x="1260" y="270">renderiza</text>
 
-  <rect class="package" x="35" y="465" width="1410" height="495" rx="10"/>
-  <rect class="package-title-bg" x="48" y="453" width="300" height="34" rx="10"/>
-  <text class="package-title" x="65" y="476">Autoavaliação e tipos</text>
+  <rect class="package" x="35" y="465" width="1410" height="535" rx="10"/>
+  <rect class="package-title-bg" x="48" y="453" width="330" height="34" rx="10"/>
+  <text class="package-title" x="65" y="476">Autoavaliação, tipos e PDF</text>
 
   <g class="dependency">
     <path d="M430 590 L480 590"/>
@@ -80,12 +80,16 @@
     <path d="M430 680 L850 780"/>
     <path d="M1020 665 L1020 710"/>
     <path d="M1220 790 L1190 790"/>
+    <path d="M430 690 L480 900"/>
+    <path d="M820 900 L850 900"/>
   </g>
   <text class="relation" x="438" y="578">usa dados</text>
   <text class="relation" x="530" y="646">usa ferramentas</text>
   <text class="relation" x="600" y="730">soma respostas</text>
   <text class="relation" x="850" y="705">combina dados da ferramenta</text>
   <text class="relation" x="1100" y="778">retorna Classificacao</text>
+  <text class="relation" x="435" y="800">gera PDF</text>
+  <text class="relation" x="823" y="887">usa</text>
 
   <g>
     <rect class="box" x="70" y="535" width="360" height="185" rx="5"/>
@@ -147,6 +151,18 @@
     <text class="small" x="1237" y="834">0–3 inicial</text>
     <text class="small" x="1237" y="850">4–6 moderado • 7–9 frequente</text>
 
+    <rect class="box" x="480" y="865" width="340" height="90" rx="5"/>
+    <text class="box-head" x="650" y="887" text-anchor="middle">«função»</text>
+    <text class="box-name" x="650" y="912" text-anchor="middle">baixarManualAutoavaliacao</text>
+    <line class="divider" x1="480" y1="922" x2="820" y2="922"/>
+    <text class="field" x="498" y="944">Gera e baixa o resultado personalizado em PDF</text>
+
+    <rect class="external" x="850" y="865" width="340" height="90" rx="5"/>
+    <text class="box-head" x="1020" y="887" text-anchor="middle">«biblioteca»</text>
+    <text class="box-name" x="1020" y="912" text-anchor="middle">jsPDF</text>
+    <line class="divider" x1="850" y1="922" x2="1190" y2="922"/>
+    <text class="field" x="868" y="944">Criação do arquivo PDF para download</text>
+
     <rect class="external" x="70" y="770" width="360" height="120" rx="5"/>
     <text class="box-head" x="250" y="792" text-anchor="middle">«armazenamento do navegador»</text>
     <text class="box-name" x="250" y="817" text-anchor="middle">localStorage</text>
@@ -157,5 +173,5 @@
 
   <path class="dependency" d="M250 720 L250 770"/>
   <text class="relation" x="265" y="752">lê / salva respostas</text>
-  <text class="subtitle" x="740" y="930" text-anchor="middle">Perguntas, ferramentas e tipos são definidos no componente; a classificação está em utils/classificacao.ts.</text>
+  <text class="subtitle" x="740" y="985" text-anchor="middle">Perguntas, ferramentas e tipos são definidos no componente; a classificação está em utils/classificacao.ts.</text>
 </svg>

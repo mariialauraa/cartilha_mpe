@@ -152,7 +152,7 @@ describe('Autoavaliacao - Fluxo Básico', () => {
           descricao:
             'Sua empresa ainda utiliza pouco os recursos de comércio eletrônico. Considere começar com canais simples para vender produtos ou receber solicitações de serviços pela internet.',
           dicas: expect.arrayContaining([
-            'Avalie um canal simples para vender produtos ou receber solicitações de serviços pela internet.',
+            'Escolha um canal digital adequado ao seu negócio para comercializar produtos ou receber solicitações de serviços, considerando os custos e as necessidades dos clientes.',
           ]),
         }),
         expect.objectContaining({
@@ -162,7 +162,7 @@ describe('Autoavaliacao - Fluxo Básico', () => {
           descricao:
             'Sua empresa ainda utiliza pouco as ferramentas digitais de gestão. As orientações a seguir podem ajudar a identificar recursos adequados às necessidades do negócio.',
           dicas: expect.arrayContaining([
-            'Identifique quais atividades precisam de mais organização, como finanças, atendimentos ou controle de estoque.',
+            'Identifique quais atividades precisam de mais organização, como finanças, pedidos, agendamentos ou controle de estoque.',
           ]),
         }),
       ]),
