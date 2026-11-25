@@ -22,12 +22,13 @@ const canaisDigitais = [
     icone: Camera,
     titulo: "Redes sociais",
     descricao:
-      "Divulgar produtos, compartilhar novidades e interagir com os clientes.",
+      "Divulgar produtos e serviços, compartilhar novidades e interagir com os clientes.",
   },
   {
     icone: MessageCircle,
     titulo: "Aplicativos de mensagens",
-    descricao: "Responder dúvidas, atender clientes e facilitar a comunicação.",
+    descricao:
+      "Atender clientes, esclarecer dúvidas e receber pedidos ou agendamentos.",
   },
 ];
 
@@ -36,25 +37,25 @@ const fasesPresencaDigital = [
     numero: "01",
     titulo: "Existência",
     descricao:
-      "Escolha os canais mais adequados ao seu negócio e planeje como sua empresa estará presente na internet.",
+      "Escolha os canais digitais mais adequados ao seu negócio e crie perfis com informações sobre a empresa, seus produtos ou serviços e formas de contato.",
   },
   {
     numero: "02",
     titulo: "Atração",
     descricao:
-      "Divulgue seus produtos, serviços e informações relevantes para chamar a atenção do público.",
+      "Publique regularmente conteúdos sobre seus produtos ou serviços, novidades e informações que possam despertar o interesse do público.",
   },
   {
     numero: "03",
     titulo: "Relacionamento",
     descricao:
-      "Responda aos clientes, acompanhe os comentários e utilize as sugestões recebidas para melhorar seu atendimento.",
+      "Responda às mensagens e aos comentários dos clientes e utilize as sugestões recebidas para melhorar o atendimento.",
   },
   {
     numero: "04",
     titulo: "Engajamento",
     descricao:
-      "Mantenha a comunicação e incentive a participação dos clientes para fortalecer o relacionamento com sua empresa.",
+      "Incentive a participação dos clientes por meio de enquetes, avaliações e compartilhamento de experiências, fortalecendo o vínculo com a empresa.",
   },
 ];
 
@@ -66,9 +67,8 @@ function FerramentasDigitais() {
   >(null);
 
   useLayoutEffect(() => {
-    const secoes = conteudoRef.current?.querySelectorAll<HTMLDetailsElement>(
-      "details[id]",
-    );
+    const secoes =
+      conteudoRef.current?.querySelectorAll<HTMLDetailsElement>("details[id]");
     const destino = Array.from(secoes ?? []).find(
       (secao) => `#${secao.id}` === hash,
     );
@@ -101,9 +101,9 @@ function FerramentasDigitais() {
 
   const exemplos = {
     instagram: {
-      titulo: "Exemplo de perfil comercial nas redes sociais",
+      titulo: "Exemplo de perfil comercial no Instagram",
       descricao:
-        "Veja como uma confeitaria pode organizar seu perfil nas redes sociais para apresentar seus produtos e facilitar o contato com os clientes.",
+        "Veja como uma confeitaria pode organizar seu perfil no Instagram para divulgar seus produtos, apresentar informações sobre o negócio e facilitar o contato com os clientes.",
       imagem: "/images/perfil_loja.png",
       alt: "Exemplo de perfil comercial de uma confeitaria nas redes sociais.",
     },
@@ -158,18 +158,15 @@ function FerramentasDigitais() {
                 <p>
                   Presença digital é a forma como uma empresa se apresenta,
                   divulga seus produtos ou serviços e se comunica com os
-                  clientes pela internet.
-                </p>
-
-                <p>
-                  Ela pode ser construída por meio de redes sociais, sites e
-                  aplicativos de mensagens, ajudando a empresa a ser encontrada
-                  e a manter um relacionamento com seu público.
+                  clientes pela internet. Por meio de canais como redes sociais,
+                  sites e aplicativos de mensagens, a empresa pode ampliar sua
+                  visibilidade, facilitar o contato com os clientes e fortalecer
+                  o relacionamento com seu público.
                 </p>
               </div>
 
               <div className="ferramentas-bloco">
-                <h3>Principais canais digitais</h3>
+                <h3>Exemplos de canais digitais</h3>
 
                 <div className="canais-digitais-grid">
                   {canaisDigitais.map((canal) => (
@@ -207,9 +204,9 @@ function FerramentasDigitais() {
                 <h3>Como construir sua presença digital?</h3>
 
                 <p>
-                  A construção da presença digital pode acontecer de forma
-                  gradual, considerando as necessidades e os objetivos de cada
-                  empresa.
+                  A presença digital pode ser construída de forma gradual,
+                  considerando as necessidades e os objetivos de cada empresa.
+                  Conheça as principais etapas desse processo.
                 </p>
 
                 <div className="fases-digitais">
@@ -231,16 +228,12 @@ function FerramentasDigitais() {
 
                 <p>
                   Imagine uma pequena confeitaria que deseja alcançar mais
-                  clientes. Ela pode criar um perfil nas redes sociais para
-                  divulgar seus bolos, apresentar um catálogo de produtos e
-                  disponibilizar um aplicativo de mensagens para receber pedidos
-                  e tirar dúvidas.
-                </p>
-
-                <p>
-                  Com publicações frequentes e um bom atendimento, a confeitaria
-                  pode aumentar sua visibilidade e fortalecer o relacionamento
-                  com os consumidores.
+                  clientes. Ela pode utilizar o Instagram para divulgar seus
+                  produtos e o WhatsApp Business para apresentar seu catálogo,
+                  receber pedidos e esclarecer dúvidas. Com publicações
+                  frequentes e um bom atendimento, a confeitaria pode ampliar
+                  sua visibilidade e fortalecer o relacionamento com seus
+                  clientes.
                 </p>
               </div>
             </div>
@@ -267,15 +260,11 @@ function FerramentasDigitais() {
                 <p>
                   O comércio eletrônico, também conhecido como{" "}
                   <em>e-commerce</em>, é a comercialização de produtos e
-                  serviços pela internet. Ele envolve etapas como a apresentação
-                  dos produtos, a realização de pedidos, o pagamento e o
-                  atendimento ao cliente.
-                </p>
-
-                <p>
-                  Para micro e pequenas empresas, essa modalidade pode ampliar
-                  as oportunidades de venda e permitir que os negócios alcancem
-                  consumidores além de sua localização física.
+                  serviços pela internet. Ele envolve atividades como a
+                  apresentação das ofertas, a realização de pedidos, o pagamento
+                  e o atendimento ao cliente. Para micro e pequenas empresas,
+                  essa modalidade pode ampliar as oportunidades de venda e
+                  possibilitar o alcance de clientes em diferentes localidades.
                 </p>
               </div>
 
@@ -285,8 +274,9 @@ function FerramentasDigitais() {
                 </h3>
 
                 <p>
-                  As transações comerciais pela internet podem acontecer entre
-                  diferentes tipos de participantes.
+                  As transações comerciais pela internet podem ocorrer entre
+                  empresas, entre empresas e consumidores ou entre os próprios
+                  consumidores. Conheça algumas dessas modalidades.
                 </p>
 
                 <div className="ecommerce-modalidades-grid">
@@ -327,8 +317,8 @@ function FerramentasDigitais() {
                     <h5>Consumidor para consumidor</h5>
 
                     <p>
-                      Uma pessoa vende um produto usado para outra pessoa por
-                      meio de uma plataforma online.
+                      Uma pessoa vende um produto para outra pessoa por meio de
+                      uma plataforma online.
                     </p>
                   </div>
                 </div>
@@ -338,8 +328,9 @@ function FerramentasDigitais() {
                 <h3>O que considerar antes de vender online?</h3>
 
                 <p>
-                  Para oferecer uma boa experiência de compra, é importante
-                  planejar algumas etapas.
+                  Antes de comercializar produtos ou serviços pela internet, é
+                  importante organizar alguns processos do negócio para oferecer
+                  uma boa experiência aos clientes.
                 </p>
 
                 <div className="fases-digitais">
@@ -347,12 +338,12 @@ function FerramentasDigitais() {
                     <span className="fase-numero">01</span>
 
                     <div className="fase-conteudo">
-                      <h4>Organização do estoque</h4>
+                      <h4>Escolha do canal de venda</h4>
                       <p>
-                        Acompanhe a quantidade de produtos disponíveis e
-                        mantenha o estoque atualizado nos canais de venda. Isso
-                        ajuda a evitar pedidos de produtos indisponíveis e
-                        problemas no atendimento aos clientes.
+                        Escolha o canal de venda mais adequado ao seu negócio,
+                        como lojas virtuais, marketplaces ou aplicativos de
+                        mensagens. Considere os custos, as funcionalidades
+                        oferecidas e as necessidades da empresa e dos clientes.
                       </p>
                     </div>
                   </div>
@@ -361,12 +352,12 @@ function FerramentasDigitais() {
                     <span className="fase-numero">02</span>
 
                     <div className="fase-conteudo">
-                      <h4>Entregas e prazos</h4>
+                      <h4>Organização de produtos e serviços</h4>
                       <p>
-                        Organize a preparação e o envio dos pedidos,
-                        considerando os custos de transporte e os prazos de
-                        entrega. Informe essas condições com clareza para que os
-                        clientes saibam quando e como receberão seus produtos.
+                        Mantenha atualizadas as informações sobre os produtos
+                        disponíveis e os serviços oferecidos. Organize o estoque
+                        ou a agenda de atendimentos para evitar pedidos de
+                        produtos indisponíveis ou conflitos de horários.
                       </p>
                     </div>
                   </div>
@@ -375,13 +366,12 @@ function FerramentasDigitais() {
                     <span className="fase-numero">03</span>
 
                     <div className="fase-conteudo">
-                      <h4>Segurança nas compras</h4>
+                      <h4>Entregas e prazos</h4>
                       <p>
-                        Utilize plataformas confiáveis e mecanismos de segurança
-                        para proteger os dados dos clientes durante as compras.
-                        Tenha atenção à proteção das informações pessoais e de
-                        pagamento, utilizando soluções que ajudem a prevenir
-                        fraudes e aumentar a confiança dos consumidores.
+                        Organize a preparação e a entrega dos pedidos ou a
+                        realização dos serviços contratados. Informe com clareza
+                        os custos, os prazos e as condições de entrega ou
+                        atendimento aos clientes.
                       </p>
                     </div>
                   </div>
@@ -390,12 +380,28 @@ function FerramentasDigitais() {
                     <span className="fase-numero">04</span>
 
                     <div className="fase-conteudo">
+                      <h4>Segurança nas compras</h4>
+                      <p>
+                        Utilize plataformas e meios de pagamento confiáveis,
+                        proteja as informações pessoais dos clientes e verifique
+                        a confirmação dos pagamentos. Essas práticas ajudam a
+                        prevenir fraudes e aumentar a confiança dos
+                        consumidores.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="fase-digital">
+                    <span className="fase-numero">05</span>
+
+                    <div className="fase-conteudo">
                       <h4>Divulgação e relacionamento</h4>
                       <p>
-                        Utilize as redes sociais para divulgar os produtos e
-                        direcionar os clientes aos canais de venda. Mantenha um
-                        bom atendimento para esclarecer dúvidas e fortalecer o
-                        relacionamento com os consumidores.
+                        Utilize as redes sociais para divulgar seus produtos ou
+                        serviços e direcionar os clientes aos canais de venda.
+                        Ofereça um bom atendimento em todas as etapas da
+                        comercialização, esclarecendo dúvidas e acompanhando as
+                        solicitações recebidas.
                       </p>
                     </div>
                   </div>
@@ -406,16 +412,13 @@ function FerramentasDigitais() {
                 <h3>Exemplo prático</h3>
 
                 <p>
-                  Imagine uma pequena loja que deseja ampliar suas vendas e
-                  alcançar clientes de outras cidades. Para isso, ela pode criar
+                  Imagine uma pequena loja de roupas que deseja ampliar suas
+                  vendas e alcançar clientes de outras cidades. Ela pode criar
                   uma loja virtual para apresentar seus produtos, receber
-                  pedidos e oferecer opções de pagamento.
-                </p>
-
-                <p>
-                  Com esse novo canal de vendas, a empresa pode alcançar
-                  consumidores além de sua localização física e ampliar suas
-                  oportunidades de negócio.
+                  pedidos e oferecer diferentes formas de pagamento. Ao manter o
+                  estoque atualizado, organizar as entregas e divulgar a loja
+                  nas redes sociais, a empresa pode ampliar seu alcance e
+                  conquistar novos clientes.
                 </p>
               </div>
             </div>
@@ -438,15 +441,13 @@ function FerramentasDigitais() {
                 <h3>O que é um sistema ERP?</h3>
 
                 <p>
-                  Um ERP é um sistema de gestão que reúne informações de
-                  diferentes áreas da empresa em um único lugar, facilitando a
-                  organização e o acompanhamento das atividades.
-                </p>
-
-                <p>
-                  Com ele, é possível integrar informações relacionadas a
-                  vendas, compras, estoque, finanças e outras áreas, reduzindo a
-                  repetição de dados e ajudando na tomada de decisões.
+                  Um ERP é um sistema de gestão empresarial que integra
+                  informações de diferentes áreas do negócio, como vendas,
+                  compras, estoque e finanças, em um único lugar. Essa
+                  integração facilita a organização das atividades, reduz a
+                  necessidade de controles separados e permite que os gestores
+                  acompanhem os resultados da empresa e tomem decisões com base
+                  nas informações registradas.
                 </p>
               </div>
 
@@ -454,8 +455,10 @@ function FerramentasDigitais() {
                 <h3>Quais áreas um ERP pode integrar?</h3>
 
                 <p>
-                  Os sistemas ERP podem ser organizados em módulos, de acordo
-                  com as necessidades de cada empresa.
+                  Os sistemas ERP podem ser organizados em módulos, que
+                  correspondem a diferentes áreas da empresa. Cada negócio pode
+                  utilizar as funcionalidades mais adequadas às suas
+                  necessidades.
                 </p>
 
                 <div className="erp-modulos-grid">
@@ -464,7 +467,10 @@ function FerramentasDigitais() {
                       <BarChart3 size={23} strokeWidth={1.8} />
                     </span>
                     <h4>Vendas</h4>
-                    <p>Acompanhar pedidos, clientes e faturamento.</p>
+                    <p>
+                      Registrar vendas e serviços contratados, acompanhar
+                      pedidos e controlar o faturamento.
+                    </p>
                   </div>
 
                   <div className="erp-modulo-card">
@@ -472,7 +478,10 @@ function FerramentasDigitais() {
                       <ShoppingCart size={23} strokeWidth={1.8} />
                     </span>
                     <h4>Compras</h4>
-                    <p>Organizar fornecedores, cotações e compras.</p>
+                    <p>
+                      Gerenciar fornecedores, comparar cotações e acompanhar
+                      pedidos de compra.
+                    </p>
                   </div>
 
                   <div className="erp-modulo-card">
@@ -480,7 +489,10 @@ function FerramentasDigitais() {
                       <Package size={23} strokeWidth={1.8} />
                     </span>
                     <h4>Estoque</h4>
-                    <p>Controlar produtos, movimentações e inventário.</p>
+                    <p>
+                      Controlar a quantidade de produtos disponíveis e
+                      acompanhar as entradas e saídas do estoque.
+                    </p>
                   </div>
 
                   <div className="erp-modulo-card">
@@ -488,7 +500,10 @@ function FerramentasDigitais() {
                       <Wallet size={23} strokeWidth={1.8} />
                     </span>
                     <h4>Financeiro</h4>
-                    <p>Acompanhar contas a pagar e receber e fluxo de caixa.</p>
+                    <p>
+                      Controlar receitas, despesas, contas a pagar e a receber,
+                      além de acompanhar o fluxo de caixa.
+                    </p>
                   </div>
 
                   <div className="erp-modulo-card">
@@ -508,7 +523,8 @@ function FerramentasDigitais() {
                     </span>
                     <h4>Gestão de clientes (CRM)</h4>
                     <p>
-                      Reunir informações de clientes, contatos e relacionamento.
+                      Organizar dados dos clientes, acompanhar o histórico de
+                      compras e atendimentos e facilitar a comunicação.
                     </p>
                   </div>
                 </div>
@@ -527,8 +543,8 @@ function FerramentasDigitais() {
                 <h3>O que considerar antes de adotar um ERP?</h3>
 
                 <p>
-                  Antes de escolher um sistema ERP, é importante considerar as
-                  necessidades e as condições da empresa.
+                  A escolha de um sistema ERP deve considerar as características
+                  do negócio, os recursos disponíveis e os objetivos da empresa.
                 </p>
 
                 <div className="fases-digitais">
@@ -539,8 +555,9 @@ function FerramentasDigitais() {
                       <h4>Necessidades da empresa</h4>
                       <p>
                         Identifique quais atividades precisam de mais
-                        organização e quais módulos são mais adequados ao seu
-                        negócio.
+                        organização, como finanças, vendas, agendamentos ou
+                        controle de estoque. Priorize as funcionalidades
+                        essenciais para o seu negócio.
                       </p>
                     </div>
                   </div>
@@ -551,8 +568,10 @@ function FerramentasDigitais() {
                     <div className="fase-conteudo">
                       <h4>Custos de implantação e manutenção</h4>
                       <p>
-                        Considere os custos envolvidos na implantação do sistema
-                        e na sua manutenção ao longo do tempo.
+                        Avalie os custos de contratação, implantação,
+                        mensalidade, treinamento e manutenção do sistema.
+                        Verifique se esses valores são compatíveis com o
+                        orçamento da empresa.
                       </p>
                     </div>
                   </div>
@@ -563,8 +582,11 @@ function FerramentasDigitais() {
                     <div className="fase-conteudo">
                       <h4>Integração com outras ferramentas</h4>
                       <p>
-                        Avalie as dificuldades de integração com os sistemas e
-                        plataformas que a empresa já utiliza.
+                        Verifique se o ERP pode ser integrado às ferramentas que
+                        sua empresa já utiliza, como plataformas de comércio
+                        eletrônico e sistemas de pagamento. Essa integração pode
+                        reduzir a necessidade de registrar as mesmas informações
+                        em diferentes sistemas.
                       </p>
                     </div>
                   </div>
@@ -573,10 +595,25 @@ function FerramentasDigitais() {
                     <span className="fase-numero">04</span>
 
                     <div className="fase-conteudo">
+                      <h4>Facilidade de uso e suporte técnico</h4>
+                      <p>
+                        Verifique se o sistema é fácil de utilizar e se oferece
+                        suporte técnico e materiais de orientação que possam
+                        auxiliar em caso de dúvidas ou dificuldades.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="fase-digital">
+                    <span className="fase-numero">05</span>
+
+                    <div className="fase-conteudo">
                       <h4>Capacitação da equipe</h4>
                       <p>
-                        Prepare os colaboradores para utilizar o sistema e
-                        aproveitar melhor suas funcionalidades.
+                        Reserve um tempo para aprender a utilizar o sistema e
+                        orientar a equipe. Comece pelas funcionalidades
+                        essenciais e explore outros recursos conforme as
+                        necessidades do negócio.
                       </p>
                     </div>
                   </div>
@@ -587,15 +624,13 @@ function FerramentasDigitais() {
                 <h3>Exemplo prático</h3>
 
                 <p>
-                  Imagine uma pequena loja que precisa acompanhar suas vendas,
-                  controlar o estoque e organizar as contas da empresa.
-                </p>
-
-                <p>
-                  Com um sistema ERP, essas informações podem ser reunidas em um
-                  único lugar, facilitando o acompanhamento das operações e
-                  ajudando o responsável pelo negócio a tomar decisões com base
-                  nos dados disponíveis.
+                  Imagine uma pequena papelaria que precisa acompanhar suas
+                  vendas, controlar o estoque e organizar suas finanças. Com um
+                  sistema ERP, ao registrar uma venda, o estoque pode ser
+                  atualizado automaticamente e as informações financeiras
+                  registradas no sistema. Dessa forma, o gestor pode acompanhar
+                  os resultados do negócio, identificar os produtos mais
+                  vendidos e planejar a reposição do estoque.
                 </p>
               </div>
             </div>
